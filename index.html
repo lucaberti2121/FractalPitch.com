@@ -166,15 +166,7 @@
       }
 
       .glacia-grid {
-        position: absolute;
-        inset: 0;
-        background-size: 50px 50px;
-        background-image: 
-          linear-gradient(to right, rgba(53, 215, 255, 0.16) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(53, 215, 255, 0.16) 1px, transparent 1px);
-        mask-image: radial-gradient(ellipse 90% 85% at 50% 25%, #000 35%, transparent 95%);
-        -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 25%, #000 35%, transparent 95%);
-        opacity: 0.85;
+        display: none;
       }
 
       .glacia-orb {
@@ -319,19 +311,24 @@
       .section-label {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.6rem;
         font-family: var(--font-mono);
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: var(--text-muted);
+        letter-spacing: 0.12em;
+        color: var(--text-head);
+        font-weight: 700;
         margin-bottom: 1.25rem;
       }
 
       .section-label .num {
-        color: var(--text-head);
+        color: #35D7FF;
         font-weight: 800;
-        opacity: 0.85;
+      }
+
+      .brand-cyan {
+        color: #35D7FF;
+        font-weight: 800;
       }
 
       /* Liquid Glass Card Component (inspired by liquidglassdesign.com) */
@@ -748,12 +745,12 @@
 
       /* Hero Section */
       .hero-section {
-        min-height: 100vh;
+        min-height: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: 8rem;
-        padding-bottom: 4rem;
+        padding-top: clamp(6rem, 8vw, 7.5rem);
+        padding-bottom: 3.5rem;
         position: relative;
         overflow: hidden;
       }
@@ -782,14 +779,14 @@
       .hero-content {
         position: relative;
         z-index: 2;
-        max-width: 920px;
+        max-width: 960px;
       }
 
       .eyebrow-pill {
         display: inline-flex;
         align-items: center;
         gap: 0.625rem;
-        padding: 0.4rem 1.125rem;
+        padding: 0.35rem 1rem;
         background: rgba(255, 255, 255, 0.85);
         border: 1px solid rgba(0, 136, 204, 0.25);
         backdrop-filter: blur(16px);
@@ -799,7 +796,7 @@
         font-weight: 600;
         color: var(--accent);
         box-shadow: 0 4px 15px rgba(0, 136, 204, 0.08);
-        margin-bottom: 1.75rem;
+        margin-bottom: 1.25rem;
       }
 
       .pulse-dot {
@@ -817,14 +814,19 @@
       }
 
       .hero-title {
-        margin-bottom: 1.5rem;
+        font-size: clamp(2.1rem, 4.2vw, 3.5rem);
+        line-height: 1.18;
+        letter-spacing: -0.035em;
+        margin-bottom: 1.25rem;
+        max-width: 920px;
       }
 
       .hero-subhead {
-        font-size: clamp(1.125rem, 2vw, 1.35rem);
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
         color: var(--text-body);
-        line-height: 1.65;
-        margin-bottom: 2.5rem;
+        line-height: 1.6;
+        margin-bottom: 1.75rem;
+        max-width: 780px;
       }
 
       .hero-cta-group {
@@ -832,7 +834,7 @@
         align-items: center;
         gap: 1.25rem;
         flex-wrap: wrap;
-        margin-bottom: 4.5rem;
+        margin-bottom: 2.75rem;
       }
 
       .trust-strip {
@@ -1721,7 +1723,7 @@
             <span>✨ August Inauguration Special: $150 / Show-Up Call (normally $250)</span>
           </div>
 
-          <h1 class="hero-title reveal">You only pay per <span class="accent-text italic">calls that show up.</span></h1>
+          <h1 class="hero-title reveal">Get <span class="brand-cyan">qualified calls</span> every month through a <span class="brand-cyan">done-for-you</span> cold email lead generation system.</h1>
 
           <p class="hero-subhead reveal">
             Researched, hand-crafted cold email for B2B SaaS. During our August agency inauguration, you pay only <strong>$150 per qualified show-up call</strong> (normally $250/call) plus setup fee. Zero monthly retainers, zero hidden charges, zero long-term commitments.
@@ -1901,14 +1903,14 @@
                 </div>
 
                 <div class="output-item hero-output">
-                  <span class="output-label">Annual revenue impact</span>
-                  <span class="output-num" id="out-annual">$648,000</span>
+                  <span class="output-label">Annual profit impact</span>
+                  <span class="output-num" id="out-annual">$518,400</span>
                 </div>
               </div>
             </div>
 
             <p class="calc-sentence" id="calc-narrative">
-              At $18,000 ACV and a 20% close rate, 15 qualified calls per month puts $648,000 of new revenue on the table this year.
+              At $18,000 ACV, a 20% close rate, and 80% gross margin, 15 qualified calls/mo puts $648,000 revenue and $518,400 net profit on the table this year.
             </p>
 
             <p class="calc-disclaimer">
@@ -2361,14 +2363,23 @@
         deals: 3.0,
         revenue: 54000,
         profit: 43200,
-        annual: 648000
+        annual: 518400
       };
 
       let activeAnimFrames = {};
 
-      function animateValue(key, element, start, end, duration, isCurrency = true, decimals = 0) {
+      function animateValue(key, element, targetEnd, duration, isCurrency = true, decimals = 0) {
         if (activeAnimFrames[key]) {
           cancelAnimationFrame(activeAnimFrames[key]);
+        }
+
+        const start = currentVals[key] !== undefined ? currentVals[key] : targetEnd;
+        const end = targetEnd;
+
+        if (duration <= 0 || Math.abs(start - end) < 0.001) {
+          currentVals[key] = end;
+          element.textContent = isCurrency ? currencyFormatter.format(end) : end.toFixed(decimals);
+          return;
         }
 
         const startTime = performance.now();
@@ -2378,6 +2389,8 @@
           const progress = Math.min(elapsed / duration, 1);
           const easeOut = 1 - Math.pow(1 - progress, 3);
           const current = start + (end - start) * easeOut;
+
+          currentVals[key] = current;
 
           if (isCurrency) {
             element.textContent = currencyFormatter.format(current);
@@ -2414,16 +2427,17 @@
         const deals = calls * closeRate;
         const monthlyRev = deals * acv;
         const grossProfit = monthlyRev * margin;
-        const annualImpact = monthlyRev * 12;
+        const annualProfit = grossProfit * 12;
+        const annualRev = monthlyRev * 12;
 
-        const animDuration = prefersReducedMotion ? 0 : 450;
+        const animDuration = prefersReducedMotion ? 0 : 200;
 
-        animateValue('deals', outDeals, currentVals.deals, deals, animDuration, false, 1);
-        animateValue('revenue', outRevenue, currentVals.revenue, monthlyRev, animDuration, true);
-        animateValue('profit', outProfit, currentVals.profit, grossProfit, animDuration, true);
-        animateValue('annual', outAnnual, currentVals.annual, annualImpact, animDuration, true);
+        animateValue('deals', outDeals, deals, animDuration, false, 1);
+        animateValue('revenue', outRevenue, monthlyRev, animDuration, true);
+        animateValue('profit', outProfit, grossProfit, animDuration, true);
+        animateValue('annual', outAnnual, annualProfit, animDuration, true);
 
-        calcNarrative.innerHTML = `At <strong>${currencyFormatter.format(acv)}</strong> ACV and a <strong>${Math.round(closeRate * 100)}%</strong> close rate, 15 qualified calls per month puts <strong>${currencyFormatter.format(annualImpact)}</strong> of new revenue on the table this year.`;
+        calcNarrative.innerHTML = `At <strong>${currencyFormatter.format(acv)}</strong> ACV, a <strong>${Math.round(closeRate * 100)}%</strong> close rate, and <strong>${Math.round(margin * 100)}%</strong> gross margin, 15 qualified calls/mo puts <strong>${currencyFormatter.format(annualRev)}</strong> revenue and <strong>${currencyFormatter.format(annualProfit)}</strong> net profit on the table this year.`;
       }
 
       [acvSlider, closeSlider, marginSlider].forEach(slider => {
