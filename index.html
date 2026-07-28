@@ -137,10 +137,22 @@
         color: #0F172A;
       }
 
+      @keyframes pageFadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       body {
         background-color: var(--bg-base);
         min-height: 100vh;
         position: relative;
+        animation: pageFadeIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
       /* Glacia & Liquid Glass Abstract Background Architecture */
@@ -263,6 +275,7 @@
       section {
         padding: clamp(4.5rem, 10vw, 7.5rem) 0;
         position: relative;
+        scroll-margin-top: 100px;
       }
 
       /* Typography */
@@ -1205,7 +1218,8 @@
         box-shadow: 0 20px 50px -10px rgba(6, 22, 38, 0.12), inset 0 2px 3px #ffffff;
         background: rgba(255, 255, 255, 0.96);
         position: relative;
-        overflow: visible;
+        overflow: hidden;
+        z-index: 2;
       }
 
       .model-card-header {
@@ -1947,7 +1961,7 @@
             </div>
 
             <!-- Right: FractalPitch -->
-            <div class="glass-panel model-card dominant-card reveal" style="overflow: visible;">
+            <div class="glass-panel model-card dominant-card reveal">
               <div class="model-card-header">
                 <div>
                   <h3 style="margin: 0; font-size: 1.5rem;">FractalPitch</h3>
@@ -2285,6 +2299,26 @@
       } else {
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
       }
+
+      // SMOOTH SCROLL WITH HEADER OFFSET FOR ALL ANCHORS
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (!targetId || targetId === '#') return;
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const headerOffset = 100;
+            const elementPosition = targetEl.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
 
       // PROCESS STEP LINE SVG ANIMATION
       const processLine = document.getElementById('process-line');
