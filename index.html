@@ -7,6 +7,7 @@
     <meta name="description" content="Performance-based cold email for B2B SaaS and agencies. Pay only for qualified sales calls that show up. No retainer, no setup fee, zero risk." />
 
     <!-- Open Graph Tags -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%2300A0E9'%3E%3Cpath d='M3 3L3 6.25L5.81 4.63ZM3 6.25L3 9.5L5.81 7.88ZM5.81 4.63L5.81 7.88L8.63 6.25ZM3 9.5L3 12.75L5.81 11.13ZM3 12.75L3 16L5.81 14.38ZM5.81 11.13L5.81 14.38L8.63 12.75ZM8.63 6.25L8.63 9.5L11.44 7.88ZM8.63 9.5L8.63 12.75L11.44 11.13ZM11.44 7.88L11.44 11.13L14.26 9.5ZM3 16L3 19.25L5.81 17.63ZM3 19.25L3 22.5L5.81 20.88ZM5.81 17.63L5.81 20.88L8.63 19.25ZM3 22.5L3 25.75L5.81 24.13ZM3 25.75L3 29L5.81 27.38ZM5.81 24.13L5.81 27.38L8.63 25.75ZM8.63 19.25L8.63 22.5L11.44 20.88ZM8.63 22.5L8.63 25.75L11.44 24.13ZM11.44 20.88L11.44 24.13L14.26 22.5ZM14.26 9.5L14.26 12.75L17.07 11.13ZM14.26 12.75L14.26 16L17.07 14.38ZM17.07 11.13L17.07 14.38L19.89 12.75ZM14.26 16L14.26 19.25L17.07 17.63ZM14.26 19.25L14.26 22.5L17.07 20.88ZM17.07 17.63L17.07 20.88L19.89 19.25ZM19.89 12.75L19.89 16L22.7 14.38ZM19.89 16L19.89 19.25L22.7 17.63ZM22.7 14.38L22.7 17.63L25.52 16Z'/%3E%3C/svg%3E" />
     <meta property="og:title" content="FractalPitch: Performance-Based Cold Email for B2B SaaS" />
     <meta property="og:description" content="Researched, hand-crafted cold email. You only pay for qualified calls that show up. No retainer, no setup fee, no risk." />
     <meta property="og:type" content="website" />
@@ -479,17 +480,15 @@
 
       /* Liquid Glass Inauguration Top Bar */
       .inauguration-top-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        position: relative;
+        width: 100%;
         z-index: 102;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(225, 248, 255, 0.92) 100%);
-        border-bottom: 1px solid rgba(53, 215, 255, 0.6);
-        backdrop-filter: blur(24px) saturate(200%);
-        -webkit-backdrop-filter: blur(24px) saturate(200%);
-        padding: 0.5rem 0;
-        box-shadow: 0 4px 20px rgba(6, 22, 38, 0.08), inset 0 1px 2px #ffffff;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(225, 248, 255, 0.95) 100%);
+        border-bottom: 1px solid rgba(53, 215, 255, 0.5);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        padding: 0.45rem 0;
+        box-shadow: 0 4px 15px rgba(6, 22, 38, 0.05);
       }
 
       .inauguration-bar-container {
@@ -642,22 +641,27 @@
 
       /* Header & Nav */
       .navbar {
-        position: fixed;
-        top: 38px;
+        position: sticky;
+        top: 0;
         left: 0;
         right: 0;
         z-index: 100;
-        padding: 1rem 0;
-        transition: top 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+        padding: 0.85rem 0;
+        background: rgba(255, 255, 255, 0.88);
+        border-bottom: 1px solid rgba(53, 215, 255, 0.25);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        box-shadow: 0 4px 20px rgba(6, 22, 38, 0.04);
+        transition: background-color 0.25s ease, border-color 0.25s ease, padding 0.25s ease, box-shadow 0.25s ease;
       }
 
       .navbar.scrolled {
-        background: rgba(255, 255, 255, 0.85);
-        border-bottom: 1px solid rgba(0, 136, 204, 0.15);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        box-shadow: 0 8px 30px rgba(0, 80, 160, 0.06);
-        padding: 0.875rem 0;
+        background: rgba(255, 255, 255, 0.96);
+        border-bottom: 1px solid rgba(53, 215, 255, 0.45);
+        backdrop-filter: blur(24px) saturate(200%);
+        -webkit-backdrop-filter: blur(24px) saturate(200%);
+        box-shadow: 0 8px 30px rgba(6, 22, 38, 0.08), 0 2px 10px rgba(53, 215, 255, 0.15);
+        padding: 0.7rem 0;
       }
 
       .nav-container {
@@ -692,14 +696,31 @@
       }
 
       .nav-link {
-        color: var(--text-body);
+        color: #061626;
         font-size: 0.9375rem;
-        font-weight: 500;
-        transition: color 0.2s ease;
+        font-weight: 600;
+        transition: color 0.2s ease, opacity 0.2s ease, text-shadow 0.2s ease;
+        position: relative;
+        padding: 0.25rem 0;
       }
 
-      .nav-link:hover {
-        color: var(--accent);
+      .nav-link:hover,
+      .nav-link.active {
+        color: #35D7FF;
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(53, 215, 255, 0.35);
+      }
+
+      .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #35D7FF;
+        border-radius: 2px;
+        box-shadow: 0 0 8px rgba(53, 215, 255, 0.8);
       }
 
       .mobile-toggle {
@@ -741,6 +762,13 @@
         font-size: 1.75rem;
         font-weight: 600;
         color: var(--text-head);
+        transition: color 0.2s ease;
+      }
+
+      .mobile-menu a:hover,
+      .mobile-menu a.active {
+        color: #35D7FF;
+        font-weight: 700;
       }
 
       /* Hero Section */
@@ -749,7 +777,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: clamp(6rem, 8vw, 7.5rem);
+        padding-top: clamp(2rem, 4vw, 3.5rem);
         padding-bottom: 3.5rem;
         position: relative;
         overflow: hidden;
@@ -1538,16 +1566,61 @@
       }
 
       /* Motion & Animations */
+      @keyframes sitePageLoad {
+        0% {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      body {
+        background-color: var(--bg-base);
+        min-height: 100vh;
+        position: relative;
+        animation: sitePageLoad 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
       .reveal {
         opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
       }
 
       .reveal.active {
         opacity: 1;
         transform: translateY(0);
       }
+
+      /* Staggered Card Animations on Scroll */
+      .problem-grid .reveal:nth-child(1) { transition-delay: 0.05s; }
+      .problem-grid .reveal:nth-child(2) { transition-delay: 0.15s; }
+      .problem-grid .reveal:nth-child(3) { transition-delay: 0.25s; }
+
+      .process-steps .reveal:nth-child(1) { transition-delay: 0.05s; }
+      .process-steps .reveal:nth-child(2) { transition-delay: 0.18s; }
+      .process-steps .reveal:nth-child(3) { transition-delay: 0.3s; }
+
+      .model-comparison .reveal:nth-child(1) { transition-delay: 0.05s; }
+      .model-comparison .reveal:nth-child(2) { transition-delay: 0.2s; }
+
+      .included-grid .reveal:nth-child(1) { transition-delay: 0.05s; }
+      .included-grid .reveal:nth-child(2) { transition-delay: 0.12s; }
+      .included-grid .reveal:nth-child(3) { transition-delay: 0.19s; }
+      .included-grid .reveal:nth-child(4) { transition-delay: 0.26s; }
+      .included-grid .reveal:nth-child(5) { transition-delay: 0.33s; }
+      .included-grid .reveal:nth-child(6) { transition-delay: 0.4s; }
+
+      .faq-list .reveal:nth-child(1) { transition-delay: 0.05s; }
+      .faq-list .reveal:nth-child(2) { transition-delay: 0.1s; }
+      .faq-list .reveal:nth-child(3) { transition-delay: 0.15s; }
+      .faq-list .reveal:nth-child(4) { transition-delay: 0.2s; }
+      .faq-list .reveal:nth-child(5) { transition-delay: 0.25s; }
+      .faq-list .reveal:nth-child(6) { transition-delay: 0.3s; }
 
       /* Responsive Media Queries */
       @media (max-width: 1024px) {
@@ -1557,6 +1630,26 @@
 
         .calc-grid {
           grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .calculator-card {
+          padding: 2.25rem 1.75rem;
+        }
+
+        .calc-outputs {
+          padding: 1.5rem 1.25rem;
+        }
+
+        .calc-cta-wrap {
+          width: 100%;
+        }
+
+        .calc-cta-wrap .btn {
+          max-width: 100%;
+          white-space: normal;
+          text-align: center;
+          line-height: 1.35;
         }
 
         .model-comparison {
@@ -1606,6 +1699,85 @@
         .footer-container {
           flex-direction: column;
           align-items: flex-start;
+        }
+
+        .calculator-card {
+          padding: 1.75rem 1.25rem;
+          border-radius: var(--radius-md);
+        }
+
+        .calc-outputs {
+          padding: 1.25rem 1rem;
+          gap: 1.25rem;
+        }
+
+        .output-num {
+          font-size: 1.35rem;
+        }
+
+        .output-item.hero-output .output-num {
+          font-size: clamp(1.85rem, 5.5vw, 2.5rem);
+        }
+
+        .calc-cta-wrap {
+          margin-top: 1.75rem;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+
+        .calc-cta-wrap .btn {
+          width: 100%;
+          max-width: 100%;
+          white-space: normal;
+          text-align: center;
+          padding: 0.875rem 1.25rem;
+          font-size: 0.9375rem;
+          line-height: 1.35;
+          box-sizing: border-box;
+        }
+
+        .locked-assumption {
+          flex-wrap: wrap;
+          padding: 0.75rem 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .calculator-card {
+          padding: 1.25rem 0.875rem;
+        }
+
+        .calc-outputs {
+          padding: 1rem 0.75rem;
+          gap: 1rem;
+        }
+
+        .slider-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.25rem;
+        }
+
+        .slider-value {
+          font-size: 1.125rem;
+        }
+
+        .calc-sentence {
+          margin-top: 1.5rem;
+          padding-top: 1.25rem;
+          font-size: 0.875rem;
+        }
+
+        .calc-disclaimer {
+          font-size: 0.75rem;
+          margin-top: 1rem;
+        }
+
+        .btn {
+          width: 100%;
+          white-space: normal;
+          text-align: center;
         }
       }
 
@@ -1672,11 +1844,8 @@
     <header class="navbar" id="navbar">
       <div class="container nav-container">
         <a href="#" class="brand-logo" aria-label="FractalPitch Home">
-          <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 2L2 10L16 18L30 10L16 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 22L16 30L30 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 16L16 24L30 16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" stroke-linecap="round"/>
-            <circle cx="16" cy="10" r="2.5" fill="currentColor"/>
+          <svg class="brand-icon" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M3 3L3 6.25L5.81 4.63ZM3 6.25L3 9.5L5.81 7.88ZM5.81 4.63L5.81 7.88L8.63 6.25ZM3 9.5L3 12.75L5.81 11.13ZM3 12.75L3 16L5.81 14.38ZM5.81 11.13L5.81 14.38L8.63 12.75ZM8.63 6.25L8.63 9.5L11.44 7.88ZM8.63 9.5L8.63 12.75L11.44 11.13ZM11.44 7.88L11.44 11.13L14.26 9.5ZM3 16L3 19.25L5.81 17.63ZM3 19.25L3 22.5L5.81 20.88ZM5.81 17.63L5.81 20.88L8.63 19.25ZM3 22.5L3 25.75L5.81 24.13ZM3 25.75L3 29L5.81 27.38ZM5.81 24.13L5.81 27.38L8.63 25.75ZM8.63 19.25L8.63 22.5L11.44 20.88ZM8.63 22.5L8.63 25.75L11.44 24.13ZM11.44 20.88L11.44 24.13L14.26 22.5ZM14.26 9.5L14.26 12.75L17.07 11.13ZM14.26 12.75L14.26 16L17.07 14.38ZM17.07 11.13L17.07 14.38L19.89 12.75ZM14.26 16L14.26 19.25L17.07 17.63ZM14.26 19.25L14.26 22.5L17.07 20.88ZM17.07 17.63L17.07 20.88L19.89 19.25ZM19.89 12.75L19.89 16L22.7 14.38ZM19.89 16L19.89 19.25L22.7 17.63ZM22.7 14.38L22.7 17.63L25.52 16Z"/>
           </svg>
           <span>FractalPitch</span>
         </a>
@@ -2178,11 +2347,8 @@
       <div class="container footer-container">
         <div>
           <div class="brand-logo" style="margin-bottom: 0.5rem; font-size: 1.125rem;">
-            <svg class="brand-icon" style="width:22px; height:22px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 2L2 10L16 18L30 10L16 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M2 22L16 30L30 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M2 16L16 24L30 16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" stroke-linecap="round"/>
-              <circle cx="16" cy="10" r="2.5" fill="currentColor"/>
+            <svg class="brand-icon" style="width:24px; height:24px;" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+              <path d="M3 3L3 6.25L5.81 4.63ZM3 6.25L3 9.5L5.81 7.88ZM5.81 4.63L5.81 7.88L8.63 6.25ZM3 9.5L3 12.75L5.81 11.13ZM3 12.75L3 16L5.81 14.38ZM5.81 11.13L5.81 14.38L8.63 12.75ZM8.63 6.25L8.63 9.5L11.44 7.88ZM8.63 9.5L8.63 12.75L11.44 11.13ZM11.44 7.88L11.44 11.13L14.26 9.5ZM3 16L3 19.25L5.81 17.63ZM3 19.25L3 22.5L5.81 20.88ZM5.81 17.63L5.81 20.88L8.63 19.25ZM3 22.5L3 25.75L5.81 24.13ZM3 25.75L3 29L5.81 27.38ZM5.81 24.13L5.81 27.38L8.63 25.75ZM8.63 19.25L8.63 22.5L11.44 20.88ZM8.63 22.5L8.63 25.75L11.44 24.13ZM11.44 20.88L11.44 24.13L14.26 22.5ZM14.26 9.5L14.26 12.75L17.07 11.13ZM14.26 12.75L14.26 16L17.07 14.38ZM17.07 11.13L17.07 14.38L19.89 12.75ZM14.26 16L14.26 19.25L17.07 17.63ZM14.26 19.25L14.26 22.5L17.07 20.88ZM17.07 17.63L17.07 20.88L19.89 19.25ZM19.89 12.75L19.89 16L22.7 14.38ZM19.89 16L19.89 19.25L22.7 17.63ZM22.7 14.38L22.7 17.63L25.52 16Z"/>
             </svg>
             <span>FractalPitch</span>
           </div>
@@ -2233,12 +2399,51 @@
       // NAVBAR SCROLL SENSING
       const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
+        if (window.scrollY > 20) {
           navbar.classList.add('scrolled');
         } else {
           navbar.classList.remove('scrolled');
         }
       });
+
+      // ACTIVE NAV LINK HIGHLIGHT & SCROLLSPY
+      const navLinks = document.querySelectorAll('.nav-link');
+      const mobileLinks = document.querySelectorAll('.mobile-menu a');
+      const navSections = document.querySelectorAll('section[id]');
+
+      function updateActiveNav() {
+        let currentSectionId = '';
+        const scrollPosition = window.scrollY + 140;
+
+        navSections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === '#' + currentSectionId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+
+        mobileLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === '#' + currentSectionId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav);
+      window.addEventListener('load', updateActiveNav);
 
       // MOBILE MENU TOGGLE
       const menuToggle = document.getElementById('menu-toggle');
@@ -2278,14 +2483,23 @@
         });
       });
 
-      // SCROLL REVEAL OBSERVER
+      // INITIAL PAGE LOAD FADE-IN & SCROLL REVEAL OBSERVER
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
       if (!prefersReducedMotion) {
-        const revealElements = document.querySelectorAll('.reveal');
+        // Stagger hero section elements gracefully on initial page load
+        const heroReveals = document.querySelectorAll('#hero .reveal');
+        heroReveals.forEach((el, index) => {
+          setTimeout(() => {
+            el.classList.add('active');
+          }, 80 + index * 110);
+        });
+
+        // IntersectionObserver for all other sections across the entire website on scroll
+        const scrollRevealElements = document.querySelectorAll('main section:not(#hero) .reveal');
         const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
+          threshold: 0.08,
+          rootMargin: '0px 0px -40px 0px'
         };
 
         const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -2297,7 +2511,7 @@
           });
         }, observerOptions);
 
-        revealElements.forEach(el => revealObserver.observe(el));
+        scrollRevealElements.forEach(el => revealObserver.observe(el));
       } else {
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
       }
@@ -2310,13 +2524,22 @@
           const targetEl = document.querySelector(targetId);
           if (targetEl) {
             e.preventDefault();
-            const headerOffset = 100;
+            const headerOffset = navbar ? navbar.offsetHeight + 12 : 80;
             const elementPosition = targetEl.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
             window.scrollTo({
               top: offsetPosition,
               behavior: 'smooth'
+            });
+
+            // Set active link highlight immediately
+            navLinks.forEach(link => {
+              if (link.getAttribute('href') === targetId) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
             });
           }
         });
