@@ -1471,17 +1471,19 @@
       .modal-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(15, 23, 42, 0.65);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        z-index: 200;
+        background: rgba(6, 22, 38, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 9999;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1.5rem;
+        padding: 1.25rem;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.25s ease;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
       .modal-backdrop.open {
@@ -1490,35 +1492,50 @@
       }
 
       .booking-modal {
-        max-width: 540px;
-        width: 100%;
-        padding: 2.5rem;
+        max-width: 720px;
+        width: 95%;
+        max-height: 90vh;
+        padding: 1.75rem;
         position: relative;
-        transform: translateY(20px);
-        transition: transform 0.3s ease;
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 136, 204, 0.25);
-        box-shadow: 0 25px 60px rgba(0, 80, 160, 0.18);
+        transform: scale(0.96) translateY(12px);
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        background: #ffffff;
+        border: 1px solid rgba(53, 215, 255, 0.4);
+        box-shadow: 0 20px 50px rgba(6, 22, 38, 0.25), 0 0 30px rgba(53, 215, 255, 0.15);
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
       }
 
       .modal-backdrop.open .booking-modal {
-        transform: translateY(0);
+        transform: scale(1) translateY(0);
       }
 
       .modal-close {
         position: absolute;
-        top: 1.25rem;
-        right: 1.25rem;
-        background: transparent;
-        border: none;
-        color: var(--text-muted);
+        top: 1rem;
+        right: 1rem;
+        background: rgba(6, 22, 38, 0.05);
+        border: 1px solid rgba(6, 22, 38, 0.12);
+        color: var(--text-head);
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
-        padding: 0.5rem;
-        transition: color 0.2s ease;
+        z-index: 10;
+        transition: all 0.2s ease;
       }
 
       .modal-close:hover {
-        color: var(--text-head);
+        background: #35D7FF;
+        color: #ffffff;
+        border-color: #35D7FF;
+        transform: rotate(90deg);
       }
 
       .form-group {
@@ -1802,28 +1819,6 @@
     </style>
   </head>
   <body>
-    <!-- Inizio Barra di Navigazione con Logo -->
-<header style="position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(6, 22, 38, 0.05); padding: 16px 24px;">
-  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
-    
-    <!-- Il tuo Logo ufficiale (Invertito in nero/scuro per farlo vedere sullo sfondo chiaro) -->
-    <a href="#" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
-      <span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.2rem; color: #061626; letter-spacing: -0.02em;">FractalPitch</span>
-    </a>
-
-    <!-- Menu di Navigazione Rapida -->
-    <nav style="display: flex; gap: 24px; align-items: center;">
-      <a href="#method" style="text-decoration: none; color: #475569; font-size: 0.9rem; font-weight: 500;">Method</a>
-      <a href="#calculator" style="text-decoration: none; color: #475569; font-size: 0.9rem; font-weight: 500;">Calculator</a>
-      <a href="#model" style="text-decoration: none; color: #475569; font-size: 0.9rem; font-weight: 500;">The Model</a>
-      <a href="#questions" style="text-decoration: none; color: #475569; font-size: 0.9rem; font-weight: 500;">Questions</a>
-      <a href="#book" style="text-decoration: none; background: #061626; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;">Book a call</a>
-    </nav>
-
-  </div>
-</header>
-<!-- Fine Barra di Navigazione -->
-
     <!-- Glacia Glacial Ambient Background Layer -->
     <div class="glacia-bg-wrapper" aria-hidden="true">
       <div class="glacia-grid"></div>
@@ -2388,25 +2383,44 @@
 
     <!-- INTERACTIVE STRATEGY CALL BOOKING MODAL -->
     <div class="modal-backdrop" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="glass-panel booking-modal" style="max-width: 680px; width: 92%; padding: 1.5rem;">
+      <div class="glass-panel booking-modal">
         <button class="modal-close" id="modal-close-btn" aria-label="Close dialog">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
 
-        <div id="modal-form-state">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; padding-right: 2rem;">
+        <div id="modal-form-state" style="display: flex; flex-direction: column; flex: 1; height: 100%;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.75rem; padding-right: 2.5rem;">
             <div>
-              <h3 id="modal-title" style="margin-bottom: 0.25rem;">Book Your 20-Min Strategy Call</h3>
-              <p style="font-size: 0.875rem; color: var(--text-body);">
+              <h3 id="modal-title" style="margin: 0 0 0.25rem 0; font-size: 1.25rem; color: var(--text-head); font-weight: 700;">Book Your 20-Min Strategy Call</h3>
+              <p style="font-size: 0.85rem; color: var(--text-body); margin: 0;">
                 Turning LinkedIn & Cold Email Into High-Intent B2B Pipelines
               </p>
             </div>
-            <a href="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" target="_blank" rel="noopener noreferrer" class="btn btn-accent" style="font-size: 0.8125rem; padding: 0.5rem 1rem;">
-              Open in Cal.com ↗
+            <a href="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" target="_blank" rel="noopener noreferrer" class="btn btn-accent" style="font-size: 0.85rem; padding: 0.5rem 1rem; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700;">
+              Open Direct Cal.com Link ↗
             </a>
           </div>
 
-          <iframe src="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" style="width:100%; height:500px; border:none; border-radius:16px; background: rgba(255,255,255,0.85);" title="Book a call on Cal.com"></iframe>
+          <!-- Direct Link Fallback Banner -->
+          <div style="background: rgba(53, 215, 255, 0.08); border: 1px solid rgba(53, 215, 255, 0.3); border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-size: 0.8125rem; color: var(--text-head); font-weight: 500;">
+              📅 Prefer to open directly in Cal.com?
+            </span>
+            <a href="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" target="_blank" rel="noopener noreferrer" style="font-size: 0.8125rem; font-weight: 700; color: #0077A3; text-decoration: underline;">
+              Click here to launch full calendar ↗
+            </a>
+          </div>
+
+          <!-- Embed Container -->
+          <div id="cal-embed-container" style="width:100%; flex: 1; min-height: 480px; height: 520px; border-radius: 12px; overflow: auto; background: #ffffff; border: 1px solid rgba(6, 22, 38, 0.1); position: relative;">
+            <iframe 
+              id="cal-iframe"
+              src="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" 
+              style="width: 100%; height: 100%; border: none; min-height: 480px;"
+              allow="camera; microphone; autoplay; payment; clipboard-write; scroll"
+              title="Book a call on Cal.com">
+            </iframe>
+          </div>
         </div>
 
         <div id="modal-success-state" style="display: none; text-align: center; padding: 2rem 1rem;">
@@ -2790,28 +2804,67 @@
         }
       }
 
-      // MODAL BOOKING DIALOG HANDLERS
+      // MODAL BOOKING DIALOG HANDLERS & CAL.COM INTEGRATION
       const bookingModal = document.getElementById('booking-modal');
       const closeBtn = document.getElementById('modal-close-btn');
       const triggerBtns = document.querySelectorAll('.trigger-booking');
       const modalFormState = document.getElementById('modal-form-state');
       const modalSuccessState = document.getElementById('modal-success-state');
 
-      function openModal() {
+      // Cal.com Official Embed Snippet Setup
+      (function (C, A, L, p, a, c, l) {
+        var q = null;
+        C[L] = C[L] || function () {
+          var r = (C[L].q = C[L].q || []);
+          r.push(arguments);
+        };
+        c = A.createElement(p);
+        l = A.getElementsByTagName(p)[0];
+        c.async = 1;
+        c.src = a;
+        if (l && l.parentNode) l.parentNode.insertBefore(c, l);
+      })(window, document, "Cal", "script", "https://app.cal.com/embed/embed.js", "init");
+
+      if (window.Cal) {
+        try {
+          window.Cal("init", { origin: "https://cal.com" });
+          window.Cal("ui", {
+            styles: { branding: { brandColor: "#35D7FF" } },
+            hideEventTypeDetails: false,
+            layout: "month_view"
+          });
+        } catch(e) {
+          console.warn('Cal.com embed init notice:', e);
+        }
+      }
+
+      function openModal(e) {
+        if (e && e.preventDefault) e.preventDefault();
         if (bookingModal) bookingModal.classList.add('open');
         document.body.style.overflow = 'hidden';
+
+        const calIframe = document.getElementById('cal-iframe');
+        if (calIframe) {
+          const calUrl = 'https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines';
+          if (!calIframe.getAttribute('src') || calIframe.src === 'about:blank') {
+            calIframe.src = calUrl;
+          }
+        }
       }
 
       function closeModal() {
         if (bookingModal) bookingModal.classList.remove('open');
         document.body.style.overflow = '';
         setTimeout(() => {
-          if (modalFormState) modalFormState.style.display = 'block';
+          if (modalFormState) modalFormState.style.display = 'flex';
           if (modalSuccessState) modalSuccessState.style.display = 'none';
         }, 300);
       }
 
-      triggerBtns.forEach(btn => btn.addEventListener('click', openModal));
+      triggerBtns.forEach(btn => {
+        btn.addEventListener('click', openModal);
+      });
+
       if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
       if (bookingModal) {
