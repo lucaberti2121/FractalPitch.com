@@ -1,0 +1,2592 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FractalPitch: Cold email that pays for itself. Literally.</title>
+    <meta name="description" content="Performance-based cold email for B2B SaaS and agencies. Pay only for qualified sales calls that show up. No retainer, no setup fee, zero risk." />
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="FractalPitch: Performance-Based Cold Email for B2B SaaS" />
+    <meta property="og:description" content="Researched, hand-crafted cold email. You only pay for qualified calls that show up. No retainer, no setup fee, no risk." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FractalPitch" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does the pricing model work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You pay just the setup fee to launch your campaign infrastructure, deep prospect research, copy architecture, and inbox warmup. There are zero monthly retainers and no long-term contracts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Isn't there a monthly retainer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Traditional agencies charge $3k–$8k per month in retainers regardless of results. At FractalPitch, you pay strictly the setup fee with $0 monthly retainers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Isn't this just AI spam?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. AI is used strictly as a research accelerator. Every message is built on custom deep prospect research (funding, hiring, tech stack, recent company moves) and verified by human copywriters. We maintain low sending volumes to protect domain reputation and maximize engagement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from a normal agency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Traditional agencies charge $3k–$8k monthly retainers regardless of results and lock you into 6-month contracts. FractalPitch charges zero monthly retainers, requires only a setup fee, has no long-term lock-in, and builds high-intent outbound campaigns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long until the first call?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Typically 14 days. Days 1–10 are spent setting up dedicated domain infrastructure, warm-up protocols, ICP research, and custom message architecture. First meetings begin landing in week three."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you need from me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 20-minute onboarding session, details on your ICP and winning case studies, feedback/approval on copy before launch, and a connected calendar link. We handle everything else end-to-end."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which companies do you work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We work exclusively with B2B SaaS companies and high-ticket marketing agencies doing $1M–$20M ARR with a clear offer, defined ICP, and functional sales process."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      :root {
+        --bg-base: #FFFFFF;
+        --bg-surface: #F4FAFE;
+        --bg-elevated: #EAF6FF;
+        --accent: #35D7FF;
+        --accent-dark: #061626;
+        --accent-hover: #65E1FF;
+        --accent-glow: rgba(53, 215, 255, 0.65);
+        --accent-subtle: rgba(53, 215, 255, 0.22);
+        --accent-solid-text: #041B29;
+        --text-head: #061626;
+        --text-body: #1E293B;
+        --text-muted: #475569;
+        --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(240, 250, 255, 0.88) 100%);
+        --glass-border: rgba(255, 255, 255, 0.95);
+        --glass-hover-border: rgba(53, 215, 255, 0.95);
+        --glass-shadow: 0 20px 50px -10px rgba(6, 22, 38, 0.08), inset 0 2px 3px rgba(255, 255, 255, 1), inset 0 -2px 6px rgba(53, 215, 255, 0.35);
+        --glass-hover-shadow: 0 30px 65px -10px rgba(6, 22, 38, 0.14), inset 0 3px 5px rgba(255, 255, 255, 1), inset 0 -2px 8px rgba(53, 215, 255, 0.55);
+        
+        --font-head: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-mono: 'Inter', ui-monospace, monospace;
+
+        --radius-sm: 10px;
+        --radius-md: 16px;
+        --radius-lg: 24px;
+        --radius-pill: 9999px;
+      }
+
+      /* CSS Reset & Base */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--bg-base);
+        color: var(--text-body);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.7;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      ::selection {
+        background: rgba(0, 136, 204, 0.2);
+        color: #0F172A;
+      }
+
+      body {
+        background-color: var(--bg-base);
+        min-height: 100vh;
+        position: relative;
+      }
+
+      /* Glacia & Liquid Glass Abstract Background Architecture */
+      .glacia-bg-wrapper {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+        background-color: #F0F9FF;
+      }
+
+      .glacia-grid {
+        position: absolute;
+        inset: 0;
+        background-size: 50px 50px;
+        background-image: 
+          linear-gradient(to right, rgba(53, 215, 255, 0.16) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(53, 215, 255, 0.16) 1px, transparent 1px);
+        mask-image: radial-gradient(ellipse 90% 85% at 50% 25%, #000 35%, transparent 95%);
+        -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 25%, #000 35%, transparent 95%);
+        opacity: 0.85;
+      }
+
+      .glacia-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.65;
+        will-change: transform;
+      }
+
+      .glacia-orb-1 {
+        top: -12%;
+        left: 15%;
+        width: 750px;
+        height: 750px;
+        background: radial-gradient(circle, rgba(53, 215, 255, 0.55) 0%, rgba(56, 189, 248, 0.25) 50%, rgba(224, 242, 254, 0) 75%);
+        animation: glaciaFloat1 20s ease-in-out infinite alternate;
+      }
+
+      .glacia-orb-2 {
+        top: 30%;
+        right: -12%;
+        width: 780px;
+        height: 780px;
+        background: radial-gradient(circle, rgba(56, 189, 248, 0.38) 0%, rgba(129, 140, 248, 0.22) 55%, rgba(240, 249, 255, 0) 75%);
+        animation: glaciaFloat2 25s ease-in-out infinite alternate;
+      }
+
+      .glacia-orb-3 {
+        bottom: 2%;
+        left: -10%;
+        width: 820px;
+        height: 820px;
+        background: radial-gradient(circle, rgba(53, 215, 255, 0.45) 0%, rgba(45, 212, 191, 0.2) 60%, rgba(240, 249, 255, 0) 75%);
+        animation: glaciaFloat3 22s ease-in-out infinite alternate;
+      }
+
+      .glacia-orb-4 {
+        top: 60%;
+        left: 30%;
+        width: 650px;
+        height: 650px;
+        background: radial-gradient(circle, rgba(186, 230, 253, 0.5) 0%, rgba(53, 215, 255, 0.35) 50%, rgba(240, 249, 255, 0) 75%);
+        animation: glaciaFloat1 18s ease-in-out reverse infinite alternate;
+      }
+
+      @keyframes glaciaFloat1 {
+        0% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(40px, 50px) scale(1.08); }
+        100% { transform: translate(-30px, 20px) scale(0.95); }
+      }
+
+      @keyframes glaciaFloat2 {
+        0% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(-50px, -40px) scale(1.1); }
+        100% { transform: translate(30px, -60px) scale(0.92); }
+      }
+
+      @keyframes glaciaFloat3 {
+        0% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(60px, -30px) scale(1.05); }
+        100% { transform: translate(-20px, 40px) scale(0.98); }
+      }
+
+      /* Focus Ring for Accessibility */
+      :focus-visible {
+        outline: 2px solid var(--accent-dark);
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+
+      .skip-to-content {
+        position: absolute;
+        top: -100px;
+        left: 1rem;
+        background: var(--accent);
+        color: var(--accent-solid-text);
+        padding: 0.75rem 1.25rem;
+        font-weight: 700;
+        z-index: 9999;
+        transition: top 0.2s ease;
+        text-decoration: none;
+        border-radius: var(--radius-sm);
+      }
+
+      .skip-to-content:focus {
+        top: 1rem;
+      }
+
+      /* Layout & Container */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+      }
+
+      section {
+        padding: clamp(4.5rem, 10vw, 7.5rem) 0;
+        position: relative;
+      }
+
+      /* Typography */
+      h1, h2, h3, h4 {
+        color: var(--text-head);
+        font-family: var(--font-head);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 1.15;
+      }
+
+      h1 {
+        font-size: clamp(2.75rem, 7vw, 5.5rem);
+        line-height: 1.05;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4.5vw, 3.25rem);
+        margin-bottom: 1.25rem;
+      }
+
+      h3 {
+        font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      }
+
+      .font-mono {
+        font-family: var(--font-mono);
+      }
+
+      p {
+        color: var(--text-body);
+        max-width: 65ch;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Section Label [ 01 ] */
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--text-muted);
+        margin-bottom: 1.25rem;
+      }
+
+      .section-label .num {
+        color: var(--text-head);
+        font-weight: 800;
+        opacity: 0.85;
+      }
+
+      /* Liquid Glass Card Component (inspired by liquidglassdesign.com) */
+      .glass-panel {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(235, 248, 255, 0.8) 50%, rgba(255, 255, 255, 0.92) 100%);
+        border: 1.5px solid rgba(53, 215, 255, 0.65);
+        backdrop-filter: blur(28px) saturate(220%);
+        -webkit-backdrop-filter: blur(28px) saturate(220%);
+        border-radius: var(--radius-lg);
+        box-shadow: 
+          0 20px 50px -10px rgba(6, 22, 38, 0.08),
+          0 0 22px rgba(53, 215, 255, 0.35),
+          inset 0 2px 3px rgba(255, 255, 255, 1),
+          inset 0 -2px 8px rgba(53, 215, 255, 0.5),
+          inset 0 0 15px rgba(255, 255, 255, 0.6);
+        transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .glass-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 200%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 20%, rgba(53, 215, 255, 1) 50%, rgba(255, 255, 255, 0.95) 80%, transparent 100%);
+        box-shadow: 0 0 10px rgba(53, 215, 255, 0.8);
+        pointer-events: none;
+      }
+
+      .glass-panel::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, transparent 70%);
+        pointer-events: none;
+        opacity: 0.6;
+        transition: opacity 0.35s ease;
+      }
+
+      .glass-panel:hover {
+        border-color: rgba(53, 215, 255, 1);
+        box-shadow: 
+          0 30px 65px -10px rgba(6, 22, 38, 0.15),
+          0 0 35px rgba(53, 215, 255, 0.65),
+          inset 0 3px 5px rgba(255, 255, 255, 1),
+          inset 0 -2px 10px rgba(53, 215, 255, 0.7);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(220, 248, 255, 0.88) 50%, rgba(255, 255, 255, 0.95) 100%);
+        transform: translateY(-4px) scale(1.006);
+      }
+
+      .glass-panel:hover::after {
+        opacity: 0.8;
+      }
+
+      /* Artistic Flair Utility Classes */
+      .mono {
+        font-family: var(--font-mono);
+      }
+
+      .accent-text {
+        color: var(--text-head);
+        font-weight: 800;
+        position: relative;
+        display: inline-block;
+      }
+
+      .glow-accent {
+        box-shadow: 0 10px 40px rgba(53, 215, 255, 0.4);
+      }
+
+      .fractal-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.2;
+        pointer-events: none;
+      }
+
+      .radial-bloom {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 650px;
+        height: 650px;
+        background: radial-gradient(circle, rgba(53, 215, 255, 0.15) 0%, transparent 70%);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* Buttons & CTAs */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.625rem;
+        padding: 0.875rem 1.75rem;
+        font-family: var(--font-body);
+        font-size: 0.9375rem;
+        font-weight: 700;
+        border-radius: var(--radius-pill);
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        text-decoration: none;
+        white-space: nowrap;
+        border: none;
+      }
+
+      .btn-accent {
+        background: #35D7FF;
+        color: #041B29;
+        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 6px 24px rgba(53, 215, 255, 0.55), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+      }
+
+      .btn-accent:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 10px 32px rgba(53, 215, 255, 0.75), inset 0 1.5px 3px rgba(255, 255, 255, 1);
+        background: #65E1FF;
+        color: #02121E;
+      }
+
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--text-head);
+        border: 1px solid rgba(53, 215, 255, 0.6);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 4px 15px rgba(0, 80, 150, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+      }
+
+      .btn-ghost:hover {
+        transform: translateY(-2px) scale(1.02);
+        border-color: #35D7FF;
+        background: #ffffff;
+        color: var(--accent-dark);
+        box-shadow: 0 6px 24px rgba(53, 215, 255, 0.35);
+      }
+
+      /* Liquid Glass Inauguration Top Bar */
+      .inauguration-top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 102;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(225, 248, 255, 0.92) 100%);
+        border-bottom: 1px solid rgba(53, 215, 255, 0.6);
+        backdrop-filter: blur(24px) saturate(200%);
+        -webkit-backdrop-filter: blur(24px) saturate(200%);
+        padding: 0.5rem 0;
+        box-shadow: 0 4px 20px rgba(6, 22, 38, 0.08), inset 0 1px 2px #ffffff;
+      }
+
+      .inauguration-bar-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .inauguration-badge-group {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+      }
+
+      .inauguration-pill {
+        background: #35D7FF;
+        color: #041B29;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 800;
+        padding: 0.2rem 0.625rem;
+        border-radius: var(--radius-pill);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        box-shadow: 0 2px 10px rgba(53, 215, 255, 0.45);
+        white-space: nowrap;
+      }
+
+      .inauguration-text {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-head);
+      }
+
+      .inauguration-text strong {
+        color: #0077A3;
+        font-weight: 800;
+      }
+
+      .price-highlight-top {
+        background: rgba(53, 215, 255, 0.25);
+        padding: 0.1rem 0.4rem;
+        border-radius: 6px;
+        color: #041B29;
+        font-weight: 800;
+        border: 1px solid rgba(53, 215, 255, 0.5);
+      }
+
+      .old-price-strike {
+        text-decoration: line-through;
+        opacity: 0.55;
+        font-size: 0.8rem;
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+      }
+
+      .top-timer-display {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(53, 215, 255, 0.45);
+        padding: 0.2rem 0.625rem;
+        border-radius: var(--radius-pill);
+        box-shadow: inset 0 1px 2px #ffffff;
+      }
+
+      .timer-unit-box {
+        display: flex;
+        align-items: baseline;
+        gap: 0.15rem;
+      }
+
+      .timer-val {
+        font-family: var(--font-mono);
+        font-weight: 800;
+        font-size: 0.875rem;
+        color: var(--text-head);
+      }
+
+      .timer-lbl {
+        font-size: 0.625rem;
+        font-weight: 700;
+        color: var(--text-muted);
+      }
+
+      .timer-colon {
+        font-weight: 800;
+        color: #35D7FF;
+        font-size: 0.8rem;
+      }
+
+      .banner-cta-btn {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      /* Liquid Glass Countdown Card Widget for Model Section */
+      .model-timer-box {
+        margin-top: 1.5rem;
+        padding: 1.25rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(220, 248, 255, 0.85) 100%);
+        border: 1.5px solid rgba(53, 215, 255, 0.6);
+        border-radius: var(--radius-md);
+        box-shadow: 0 10px 30px rgba(6, 22, 38, 0.08), inset 0 1px 2px #ffffff;
+      }
+
+      .model-timer-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        font-size: 0.875rem;
+        color: var(--text-head);
+        margin-bottom: 0.875rem;
+      }
+
+      .countdown-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+      }
+
+      .countdown-card {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(53, 215, 255, 0.4);
+        padding: 0.5rem 0.25rem;
+        border-radius: var(--radius-sm);
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(6, 22, 38, 0.04), inset 0 1px 2px #ffffff;
+      }
+
+      .cd-num {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--text-head);
+        line-height: 1.2;
+      }
+
+      .cd-unit {
+        font-size: 0.625rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+      }
+
+      /* Header & Nav */
+      .navbar {
+        position: fixed;
+        top: 38px;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1rem 0;
+        transition: top 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.85);
+        border-bottom: 1px solid rgba(0, 136, 204, 0.15);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        box-shadow: 0 8px 30px rgba(0, 80, 160, 0.06);
+        padding: 0.875rem 0;
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        font-family: var(--font-head);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-head);
+        letter-spacing: -0.02em;
+      }
+
+      .brand-icon {
+        width: 28px;
+        height: 28px;
+        color: var(--accent);
+        filter: drop-shadow(0 0 8px rgba(0, 191, 255, 0.5));
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-link {
+        color: var(--text-body);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--accent);
+      }
+
+      .mobile-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        color: var(--text-head);
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 101;
+      }
+
+      /* Mobile Menu Overlay */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        z-index: 99;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .mobile-menu a {
+        font-family: var(--font-head);
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--text-head);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #hero-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-glow-bloom {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: clamp(300px, 60vw, 800px);
+        height: clamp(300px, 60vw, 800px);
+        background: radial-gradient(circle, rgba(0, 136, 204, 0.15) 0%, rgba(0, 136, 204, 0) 70%);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 920px;
+      }
+
+      .eyebrow-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.4rem 1.125rem;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(0, 136, 204, 0.25);
+        backdrop-filter: blur(16px);
+        border-radius: var(--radius-pill);
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--accent);
+        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.08);
+        margin-bottom: 1.75rem;
+      }
+
+      .pulse-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--accent);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(0.85); }
+      }
+
+      .hero-title {
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-subhead {
+        font-size: clamp(1.125rem, 2vw, 1.35rem);
+        color: var(--text-body);
+        line-height: 1.65;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-cta-group {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        margin-bottom: 4.5rem;
+      }
+
+      .trust-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+        padding: 1.5rem 2rem;
+        max-width: 840px;
+      }
+
+      .trust-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        border-right: 1px solid var(--glass-border);
+        padding-right: 1.5rem;
+      }
+
+      .trust-item:last-child {
+        border-right: none;
+        padding-right: 0;
+      }
+
+      .trust-value {
+        font-family: var(--font-mono);
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--text-head);
+      }
+
+      .trust-label {
+        font-size: 0.8125rem;
+        color: var(--text-muted);
+      }
+
+      .trust-asterisk {
+        color: var(--accent);
+        font-size: 0.75rem;
+      }
+
+      /* Subtle Liquid Glass Scroll Indicator */
+      .glass-scroll-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+        position: relative;
+        z-index: 5;
+      }
+
+      .glass-scroll-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.55rem 1.25rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(220, 248, 255, 0.8) 100%);
+        border: 1.5px solid rgba(53, 215, 255, 0.6);
+        border-radius: var(--radius-pill);
+        backdrop-filter: blur(20px) saturate(200%);
+        -webkit-backdrop-filter: blur(20px) saturate(200%);
+        box-shadow: 0 8px 25px rgba(6, 22, 38, 0.06), 0 0 18px rgba(53, 215, 255, 0.35), inset 0 1.5px 3px #ffffff;
+        color: var(--text-head);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+      }
+
+      .glass-scroll-indicator:hover {
+        transform: translateY(4px);
+        border-color: rgba(53, 215, 255, 0.95);
+        box-shadow: 0 12px 35px rgba(6, 22, 38, 0.12), 0 0 30px rgba(53, 215, 255, 0.65), inset 0 2px 4px #ffffff;
+        background: linear-gradient(135deg, #ffffff 0%, rgba(200, 245, 255, 0.95) 100%);
+        color: #041B29;
+      }
+
+      .scroll-arrow-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #0077A3;
+        animation: scrollBounce 2.2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+      }
+
+      @keyframes scrollBounce {
+        0%, 100% {
+          transform: translateY(0);
+          opacity: 0.8;
+        }
+        50% {
+          transform: translateY(5px);
+          opacity: 1;
+          filter: drop-shadow(0 2px 8px rgba(53, 215, 255, 0.85));
+        }
+      }
+
+      /* Section 01: The Problem */
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+      }
+
+      .problem-card {
+        padding: 2.25rem 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .problem-stat {
+        font-family: var(--font-mono);
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-head);
+        letter-spacing: -0.03em;
+      }
+
+      .problem-desc {
+        font-size: 0.9375rem;
+        color: var(--text-body);
+        line-height: 1.6;
+      }
+
+      /* Section 02: The Method */
+      .method-intro {
+        font-size: clamp(1.125rem, 2vw, 1.25rem);
+        color: var(--text-body);
+        margin-bottom: 4rem;
+        max-width: 72ch;
+      }
+
+      .process-wrapper {
+        position: relative;
+        margin-top: 3rem;
+      }
+
+      .process-line-svg {
+        position: absolute;
+        top: 0;
+        left: 2rem;
+        width: 2px;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .step-card {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 2rem;
+        align-items: start;
+        padding: 2.5rem 2.25rem;
+      }
+
+      .step-num {
+        font-family: var(--font-mono);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent);
+        background: var(--accent-subtle);
+        border: 1px solid rgba(0, 136, 204, 0.2);
+        width: 64px;
+        height: 64px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 136, 204, 0.12);
+      }
+
+      .step-content h3 {
+        margin-bottom: 0.75rem;
+      }
+
+      /* Section 03: ROI Calculator */
+      .calculator-card {
+        padding: clamp(2rem, 5vw, 3.5rem);
+        margin-top: 2.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .calculator-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(0, 136, 204, 0.08) 0%, transparent 60%);
+        pointer-events: none;
+      }
+
+      .calc-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: clamp(2.5rem, 5vw, 4rem);
+        align-items: start;
+      }
+
+      .calc-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 2.25rem;
+      }
+
+      .slider-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .slider-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .slider-label {
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--text-head);
+      }
+
+      .slider-value {
+        font-family: var(--font-mono);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      /* Custom Range Input */
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 6px;
+        background: rgba(0, 136, 204, 0.12);
+        border-radius: var(--radius-pill);
+        outline: none;
+        cursor: pointer;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 2px solid #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 136, 204, 0.4);
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.15);
+        box-shadow: 0 4px 16px rgba(0, 136, 204, 0.6);
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 2px solid #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 136, 204, 0.4);
+        cursor: pointer;
+      }
+
+      .locked-assumption {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.875rem 1.25rem;
+        background: rgba(0, 136, 204, 0.04);
+        border: 1px dashed var(--glass-border);
+        border-radius: var(--radius-md);
+        font-size: 0.875rem;
+        color: var(--text-muted);
+      }
+
+      .calc-outputs {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        background: rgba(240, 246, 254, 0.85);
+        border: 1px solid var(--glass-border);
+        padding: 2rem;
+        border-radius: var(--radius-md);
+        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      }
+
+      .output-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(0, 136, 204, 0.1);
+      }
+
+      .output-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .output-label {
+        font-size: 0.8125rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+      }
+
+      .output-num {
+        font-family: var(--font-mono);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-head);
+      }
+
+      .output-item.hero-output .output-num {
+        font-size: clamp(2.25rem, 4vw, 3rem);
+        color: var(--accent);
+      }
+
+      .calc-sentence {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--glass-border);
+        font-size: 0.9375rem;
+        color: var(--text-body);
+        line-height: 1.6;
+      }
+
+      .calc-disclaimer {
+        font-size: 0.78125rem;
+        color: var(--text-muted);
+        margin-top: 1.5rem;
+        line-height: 1.5;
+      }
+
+      .calc-cta-wrap {
+        margin-top: 2.25rem;
+      }
+
+      /* Section 04: The Model */
+      .model-comparison {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+
+      .model-card {
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+
+      .model-card.muted-card {
+        opacity: 0.85;
+        background: rgba(248, 250, 252, 0.65);
+        border: 1px solid rgba(200, 215, 230, 0.6);
+      }
+
+      .model-card.dominant-card {
+        border: 2px solid rgba(53, 215, 255, 0.9);
+        box-shadow: 0 20px 50px -10px rgba(6, 22, 38, 0.12), inset 0 2px 3px #ffffff;
+        background: rgba(255, 255, 255, 0.96);
+        position: relative;
+        overflow: visible;
+      }
+
+      .model-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .dominant-badge {
+        background: #35D7FF;
+        color: #041B29;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 800;
+        padding: 0.35rem 0.875rem;
+        border-radius: var(--radius-pill);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        box-shadow: 0 4px 14px rgba(53, 215, 255, 0.5);
+        white-space: nowrap;
+        display: inline-block;
+      }
+
+      .model-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .model-list-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.9375rem;
+      }
+
+      .icon-cross {
+        color: #e53e3e;
+        flex-shrink: 0;
+      }
+
+      .icon-check {
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* Section 05: What's Included */
+      .included-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+      }
+
+      .included-card {
+        padding: 2rem 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .included-icon {
+        width: 36px;
+        height: 36px;
+        color: var(--accent);
+        background: var(--accent-subtle);
+        padding: 0.5rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid rgba(0, 136, 204, 0.2);
+      }
+
+      .included-card h3 {
+        font-size: 1.125rem;
+      }
+
+      .included-card p {
+        font-size: 0.875rem;
+        color: var(--text-body);
+      }
+
+      /* Section 06: Questions / Accordion */
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2.5rem;
+        max-width: 900px;
+      }
+
+      .faq-item {
+        overflow: hidden;
+      }
+
+      .faq-button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 1.75rem;
+        background: transparent;
+        border: none;
+        color: var(--text-head);
+        font-family: var(--font-head);
+        font-size: 1.125rem;
+        font-weight: 600;
+        text-align: left;
+        cursor: pointer;
+        gap: 1rem;
+      }
+
+      .faq-icon {
+        width: 20px;
+        height: 20px;
+        color: var(--accent);
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+      }
+
+      .faq-item.open .faq-icon {
+        transform: rotate(45deg);
+      }
+
+      .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+        padding: 0 1.75rem;
+      }
+
+      .faq-item.open .faq-content {
+        max-height: 350px;
+        padding-bottom: 1.75rem;
+      }
+
+      .faq-content p {
+        font-size: 0.9375rem;
+        color: var(--text-body);
+        line-height: 1.7;
+      }
+
+      /* Section 07: Final CTA */
+      .final-cta-section {
+        padding: clamp(5rem, 12vw, 9rem) 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .final-cta-bloom {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(0, 136, 204, 0.12) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .final-cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 760px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .final-cta-sub {
+        font-size: 1.25rem;
+        margin-top: 1rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .final-reassurance {
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        margin-top: 1.5rem;
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--glass-border);
+        padding: 3rem 0;
+        background: var(--bg-surface);
+        font-size: 0.875rem;
+        color: var(--text-muted);
+      }
+
+      .footer-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .footer-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .footer-link {
+        color: var(--text-body);
+        transition: color 0.2s ease;
+      }
+
+      .footer-link:hover {
+        color: var(--accent);
+      }
+
+      /* Booking Modal */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .booking-modal {
+        max-width: 540px;
+        width: 100%;
+        padding: 2.5rem;
+        position: relative;
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(0, 136, 204, 0.25);
+        box-shadow: 0 25px 60px rgba(0, 80, 160, 0.18);
+      }
+
+      .modal-backdrop.open .booking-modal {
+        transform: translateY(0);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 0.5rem;
+        transition: color 0.2s ease;
+      }
+
+      .modal-close:hover {
+        color: var(--text-head);
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+        text-align: left;
+      }
+
+      .form-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-head);
+      }
+
+      .form-input, .form-select {
+        background: rgba(245, 248, 252, 0.9);
+        border: 1px solid var(--glass-border);
+        color: var(--text-head);
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius-md);
+        font-family: var(--font-body);
+        font-size: 0.9375rem;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .form-input:focus, .form-select:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0, 136, 204, 0.15);
+      }
+
+      .modal-success-state {
+        display: none;
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      .modal-success-icon {
+        width: 56px;
+        height: 56px;
+        color: var(--accent);
+        margin: 0 auto 1.25rem auto;
+      }
+
+      /* Motion & Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive Media Queries */
+      @media (max-width: 1024px) {
+        .problem-grid, .included-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .calc-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .model-comparison {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-toggle {
+          display: block;
+        }
+
+        .problem-grid, .included-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .trust-strip {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+        }
+
+        .trust-item {
+          border-right: none;
+          border-bottom: 1px solid var(--glass-border);
+          padding-right: 0;
+          padding-bottom: 1rem;
+        }
+
+        .trust-item:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+
+        .step-card {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .process-line-svg {
+          display: none;
+        }
+
+        .footer-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      /* Accessibility: Reduced Motion */
+      @media (prefers-reduced-motion: reduce) {
+        *, ::before, ::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+
+        #hero-canvas {
+          opacity: 0.15;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Glacia Glacial Ambient Background Layer -->
+    <div class="glacia-bg-wrapper" aria-hidden="true">
+      <div class="glacia-grid"></div>
+      <div class="glacia-orb glacia-orb-1"></div>
+      <div class="glacia-orb glacia-orb-2"></div>
+      <div class="glacia-orb glacia-orb-3"></div>
+      <div class="glacia-orb glacia-orb-4"></div>
+    </div>
+
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Liquid Glass Inauguration Top Bar -->
+    <div class="inauguration-top-bar" id="inauguration-bar">
+      <div class="container inauguration-bar-container">
+        <div class="inauguration-badge-group">
+          <span class="inauguration-pill">✨ AGENCY INAUGURATION OFFER</span>
+          <span class="inauguration-text">
+            August Special Rate: <span class="price-highlight-top">$150 / show-up call</span>
+            <span class="old-price-strike">$250</span>
+          </span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div class="top-timer-display" aria-label="August Offer Countdown Timer">
+            <div class="timer-unit-box"><span class="timer-val" id="timer-days">34</span><span class="timer-lbl">D</span></div>
+            <span class="timer-colon">:</span>
+            <div class="timer-unit-box"><span class="timer-val" id="timer-hours">12</span><span class="timer-lbl">H</span></div>
+            <span class="timer-colon">:</span>
+            <div class="timer-unit-box"><span class="timer-val" id="timer-mins">45</span><span class="timer-lbl">M</span></div>
+            <span class="timer-colon">:</span>
+            <div class="timer-unit-box"><span class="timer-val" id="timer-secs">08</span><span class="timer-lbl">S</span></div>
+          </div>
+          <button class="btn btn-accent trigger-booking banner-cta-btn">Claim $150 Rate</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar" id="navbar">
+      <div class="container nav-container">
+        <a href="#" class="brand-logo" aria-label="FractalPitch Home">
+          <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2L2 10L16 18L30 10L16 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 22L16 30L30 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 16L16 24L30 16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" stroke-linecap="round"/>
+            <circle cx="16" cy="10" r="2.5" fill="currentColor"/>
+          </svg>
+          <span>FractalPitch</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#method" class="nav-link">Method</a></li>
+          <li><a href="#calculator" class="nav-link">Calculator</a></li>
+          <li><a href="#model" class="nav-link">The Model</a></li>
+          <li><a href="#included" class="nav-link">Deliverables</a></li>
+          <li><a href="#faq" class="nav-link">Questions</a></li>
+        </ul>
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="btn btn-accent trigger-booking" aria-label="Book a call">Book a call</button>
+          <button class="mobile-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Fullscreen Glass Overlay Menu -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <a href="#method" class="mobile-nav-link">Method</a>
+      <a href="#calculator" class="mobile-nav-link">Calculator</a>
+      <a href="#model" class="mobile-nav-link">The Model</a>
+      <a href="#included" class="mobile-nav-link">Deliverables</a>
+      <a href="#faq" class="mobile-nav-link">Questions</a>
+      <button class="btn btn-accent trigger-booking" style="margin-top: 1rem;">Book a strategy call</button>
+    </div>
+
+    <!-- Main Content Container -->
+    <main id="main-content">
+      <!-- HERO SECTION -->
+      <section class="hero-section" id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-glow-bloom"></div>
+
+        <div class="container hero-content">
+          <div class="eyebrow-pill reveal">
+            <span class="pulse-dot"></span>
+            <span>✨ August Inauguration Special: $150 / Show-Up Call (normally $250)</span>
+          </div>
+
+          <h1 class="hero-title reveal">You only pay per <span class="accent-text italic">calls that show up.</span></h1>
+
+          <p class="hero-subhead reveal">
+            Researched, hand-crafted cold email for B2B SaaS. During our August agency inauguration, you pay only <strong>$150 per qualified show-up call</strong> (normally $250/call) plus setup fee. Zero monthly retainers, zero hidden charges, zero long-term commitments.
+          </p>
+
+          <div class="hero-cta-group reveal">
+            <button class="btn btn-accent trigger-booking">Book a strategy call</button>
+            <a href="#method" class="btn btn-ghost">See how it works</a>
+          </div>
+
+          <div class="glass-panel trust-strip reveal">
+            <div class="trust-item">
+              <span class="trust-value">~15</span>
+              <span class="trust-label">qualified calls / month<span class="trust-asterisk">*</span></span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-value">$0</span>
+              <span class="trust-label">monthly retainers</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-value">Pay Per Call</span>
+              <span class="trust-label">shows up (+ setup fee)</span>
+            </div>
+          </div>
+
+          <div class="glass-scroll-container reveal">
+            <a href="#problem" class="glass-scroll-indicator" aria-label="Scroll down to explore">
+              <span>Scroll to Explore</span>
+              <div class="scroll-arrow-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 01: THE PROBLEM -->
+      <section id="problem">
+        <div class="container">
+          <div class="section-label reveal">
+            <span class="num">[ 01 ]</span>
+            <span>The problem</span>
+          </div>
+
+          <h2 class="reveal">Most outbound agencies force high retainers for zero results.</h2>
+
+          <div class="problem-grid">
+            <div class="glass-panel problem-card reveal">
+              <span class="problem-stat">$3k–$8k</span>
+              <p class="problem-desc">Monthly retainer traditional agencies charge whether they perform or not.</p>
+            </div>
+            <div class="glass-panel problem-card reveal">
+              <span class="problem-stat">0.3%</span>
+              <p class="problem-desc">Average reply rate for templated, high-volume outbound in 2026.</p>
+            </div>
+            <div class="glass-panel problem-card reveal">
+              <span class="problem-stat">$0</span>
+              <p class="problem-desc">Monthly retainers charged by FractalPitch: $0. You only pay per qualified call that shows up (plus setup fee).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 02: THE FRACTAL METHOD -->
+      <section id="method">
+        <div class="container">
+          <div class="section-label reveal">
+            <span class="num">[ 02 ]</span>
+            <span>The method</span>
+          </div>
+
+          <h2 class="reveal">One architecture. A thousand variants.</h2>
+
+          <p class="method-intro reveal">
+            A fractal is the same structure repeating at every scale. FractalPitch builds one core message architecture proven to resonate with your ICP, then generates a genuinely personalized variant for every single prospect (same DNA, different expression). Research first, always.
+          </p>
+
+          <div class="process-wrapper">
+            <svg class="process-line-svg" viewBox="0 0 2 600" preserveAspectRatio="none">
+              <line id="process-line" x1="1" y1="0" x2="1" y2="600" stroke="#35D7FF" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" />
+            </svg>
+
+            <div class="process-steps">
+              <div class="glass-panel step-card reveal">
+                <div class="step-num">01</div>
+                <div class="step-content">
+                  <h3>Research before writing</h3>
+                  <p>We lock in the ICP that actually closes, not the one that generates the most leads. Every prospect is enriched with real signals: funding, hiring, tech stack, recent posts. Nothing is written before it is researched.</p>
+                </div>
+              </div>
+
+              <div class="glass-panel step-card reveal">
+                <div class="step-num">02</div>
+                <div class="step-content">
+                  <h3>The fractal build</h3>
+                  <p>We design one core message architecture around your offer, then generate a unique variant per prospect. Every email references something specific and true about that company. You approve the copy before anything sends.</p>
+                </div>
+              </div>
+
+              <div class="glass-panel step-card reveal">
+                <div class="step-num">03</div>
+                <div class="step-content">
+                  <h3>Pay per call that shows up</h3>
+                  <p>We build the entire infrastructure, write custom sequences, and drive qualified meetings to your calendar. You only pay per qualified call that shows up (plus the setup fee), with zero monthly retainers or locked contracts.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 03: ROI CALCULATOR -->
+      <section id="calculator">
+        <div class="container">
+          <div class="section-label reveal">
+            <span class="num">[ 03 ]</span>
+            <span>The maths</span>
+          </div>
+
+          <h2 class="reveal">Run the numbers on your own deal size.</h2>
+          <p class="reveal" style="margin-bottom: 1.5rem;">Based on an average of 15 qualified calls per month.</p>
+
+          <div class="glass-panel calculator-card reveal">
+            <div class="calc-grid">
+              <!-- Inputs Column -->
+              <div class="calc-inputs">
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="acv-slider" class="slider-label">Average contract value (ACV)</label>
+                    <span class="slider-value" id="acv-val">$18,000</span>
+                  </div>
+                  <input type="range" id="acv-slider" min="2000" max="150000" step="1000" value="18000" aria-label="Average contract value" aria-valuetext="$18,000" />
+                </div>
+
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="close-slider" class="slider-label">Close rate from qualified call</label>
+                    <span class="slider-value" id="close-val">20%</span>
+                  </div>
+                  <input type="range" id="close-slider" min="5" max="50" step="1" value="20" aria-label="Close rate percentage" aria-valuetext="20%" />
+                </div>
+
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="margin-slider" class="slider-label">Gross margin</label>
+                    <span class="slider-value" id="margin-val">80%</span>
+                  </div>
+                  <input type="range" id="margin-slider" min="40" max="95" step="5" value="80" aria-label="Gross margin percentage" aria-valuetext="80%" />
+                </div>
+
+                <div class="locked-assumption">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                  <span>Qualified calls per month: <strong>15</strong></span>
+                </div>
+              </div>
+
+              <!-- Outputs Column -->
+              <div class="calc-outputs">
+                <div class="output-item">
+                  <span class="output-label">Closed deals / month</span>
+                  <span class="output-num" id="out-deals">3.0</span>
+                </div>
+
+                <div class="output-item">
+                  <span class="output-label">New revenue / month</span>
+                  <span class="output-num" id="out-revenue">$54,000</span>
+                </div>
+
+                <div class="output-item">
+                  <span class="output-label">Gross profit / month</span>
+                  <span class="output-num" id="out-profit">$43,200</span>
+                </div>
+
+                <div class="output-item hero-output">
+                  <span class="output-label">Annual revenue impact</span>
+                  <span class="output-num" id="out-annual">$648,000</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="calc-sentence" id="calc-narrative">
+              At $18,000 ACV and a 20% close rate, 15 qualified calls per month puts $648,000 of new revenue on the table this year.
+            </p>
+
+            <p class="calc-disclaimer">
+              * Figures are illustrative projections based on an average of 15 qualified calls per month. Actual results vary based on your offer, ICP fit, sales process, and market conditions. Nothing here is a guarantee of performance.
+            </p>
+
+            <div class="calc-cta-wrap">
+              <button class="btn btn-accent trigger-booking">Book a call to pressure-test these numbers</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 04: WHY PERFORMANCE-BASED -->
+      <section id="model">
+        <div class="container">
+          <div class="section-label reveal">
+            <span class="num">[ 04 ]</span>
+            <span>The model</span>
+          </div>
+
+          <h2 class="reveal">Pay per call that shows up. Zero retainers.</h2>
+
+          <div class="model-comparison">
+            <!-- Left: Traditional Agency -->
+            <div class="glass-panel model-card muted-card reveal">
+              <h3>Traditional agency</h3>
+              <ul class="model-list">
+                <li class="model-list-item">
+                  <svg class="icon-cross" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  <span>$3k–$8k/month fixed retainer</span>
+                </li>
+                <li class="model-list-item">
+                  <svg class="icon-cross" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  <span>Paid every month regardless of results</span>
+                </li>
+                <li class="model-list-item">
+                  <svg class="icon-cross" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  <span>6-month locked contract</span>
+                </li>
+                <li class="model-list-item">
+                  <svg class="icon-cross" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  <span>Incentivised to bill monthly retainers</span>
+                </li>
+                <li class="model-list-item">
+                  <svg class="icon-cross" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  <span>You carry high recurring monthly risk</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Right: FractalPitch -->
+            <div class="glass-panel model-card dominant-card reveal" style="overflow: visible;">
+              <div class="model-card-header">
+                <div>
+                  <h3 style="margin: 0; font-size: 1.5rem;">FractalPitch</h3>
+                  <div style="margin-top: 0.35rem; display: flex; align-items: baseline; gap: 0.5rem;">
+                    <span style="font-size: 2rem; font-weight: 800; color: #041B29;">$150</span>
+                    <span style="font-size: 1.125rem; text-decoration: line-through; opacity: 0.5;">$250</span>
+                    <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted);">/ show-up call</span>
+                  </div>
+                </div>
+                <span class="dominant-badge">✨ Inauguration Rate</span>
+              </div>
+
+              <ul class="model-list" style="margin-top: 1rem;">
+                <li class="model-list-item">
+                  <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong>August Inauguration Rate:</strong> $150 per show-up call ($250 regular)</span>
+                </li>
+                <li class="model-list-item">
+                  <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>You only pay per qualified calls that actually show up</span>
+                </li>
+                <li class="model-list-item">
+                  <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>No recurring monthly retainers or hidden surprise charges</span>
+                </li>
+                <li class="model-list-item">
+                  <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Zero long-term lock-in contracts</span>
+                </li>
+                <li class="model-list-item">
+                  <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>100% risk-free alignment with your pipeline</span>
+                </li>
+              </ul>
+
+              <!-- Liquid Glass Inauguration Countdown Card -->
+              <div class="model-timer-box">
+                <div class="model-timer-header">
+                  <span>⏳ August Inauguration Rate Expires In:</span>
+                </div>
+                <div class="countdown-grid">
+                  <div class="countdown-card"><span class="cd-num" id="card-days">34</span><span class="cd-unit">DAYS</span></div>
+                  <div class="countdown-card"><span class="cd-num" id="card-hours">12</span><span class="cd-unit">HOURS</span></div>
+                  <div class="countdown-card"><span class="cd-num" id="card-mins">45</span><span class="cd-unit">MINS</span></div>
+                  <div class="countdown-card"><span class="cd-num" id="card-secs">08</span><span class="cd-unit">SECS</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 05: WHAT'S INCLUDED -->
+      <section id="included">
+        <div class="container">
+          <div class="section-label reveal">
+            <span class="num">[ 05 ]</span>
+            <span>What you get</span>
+          </div>
+
+          <h2 class="reveal">Everything needed for high-craft outbound.</h2>
+
+          <div class="included-grid">
+            <div class="glass-panel included-card reveal">
+              <svg class="included-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <h3>ICP definition & research</h3>
+              <p>Deep enrichment across tech stack, hiring signals, funding rounds, and executive moves.</p>
+            </div>
+
+            <div class="glass-panel included-card reveal">
+              <svg class="included-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              <h3>Domain & inbox infrastructure</h3>
+              <p>Dedicated secondary domains, DKIM/SPF/DMARC protocol setup, and automated warmup.</p>
+            </div>
+
+            <div class="glass-panel included-card reveal">
+              <svg class="included-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <h3>Deliverability monitoring</h3>
+              <p>24/7 placement tracking, spam filter defense, and inbox rotation health checks.</p>
+            </div>
+
+            <div class="glass-panel included-card reveal">
+              <svg class="included-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+              <h3>Hand-written sequences</h3>
+              <p>Core message architecture designed around your offer, with individualized prospect variations.</p>
+            </div>
+
+            <div class="glass-panel included-card reveal">
+              <svg class="included-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              <h3>Reply handling & qualification</h3>
+              <p>Human triage of all positive responses, answering objections, and filtering for true fit.</p>
+            </div>
+
+            <div class="glass-panel included-card reveal">
+              <svg class="included-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <h3>Calendar booking</h3>
+              <p>Direct scheduling on your team's calendar with pre-call prospect briefs attached.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 06: QUESTIONS -->
+      <section id="faq">
+        <div class="container">
+          <div class="section-label reveal">
+            <span class="num">[ 06 ]</span>
+            <span>Questions</span>
+          </div>
+
+          <h2 class="reveal">Frequently asked questions.</h2>
+
+          <div class="faq-list">
+            <div class="glass-panel faq-item reveal">
+              <button class="faq-button" aria-expanded="false">
+                <span>How does the pricing model work?</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content">
+                <p>You only pay per qualified call that shows up (and the setup fee). There are zero monthly retainers and no recurring bills.</p>
+              </div>
+            </div>
+
+            <div class="glass-panel faq-item reveal">
+              <button class="faq-button" aria-expanded="false">
+                <span>Isn't there a monthly retainer?</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content">
+                <p>No. That is our core promise. You only pay per show-up call (plus setup fee). We do not charge $3k–$8k/month recurring retainers like traditional agencies.</p>
+              </div>
+            </div>
+
+            <div class="glass-panel faq-item reveal">
+              <button class="faq-button" aria-expanded="false">
+                <span>Isn't this just AI spam?</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content">
+                <p>No. We deliberately restrict sending volumes to under 50 emails per inbox per day. AI is used solely for research processing and draft variations; human strategists review every line before launch.</p>
+              </div>
+            </div>
+
+            <div class="glass-panel faq-item reveal">
+              <button class="faq-button" aria-expanded="false">
+                <span>How is this different from a normal agency?</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content">
+                <p>Normal agencies lock you into 6-month contracts with $4k/month retainers regardless of whether they deliver pipeline. FractalPitch charges strictly per qualified call that shows up (plus setup fee), with $0 monthly retainers.</p>
+              </div>
+            </div>
+
+            <div class="glass-panel faq-item reveal">
+              <button class="faq-button" aria-expanded="false">
+                <span>How long until the first call?</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content">
+                <p>Roughly 14 days. Days 1–10 are dedicated to setting up isolated sending infrastructure, warming up inboxes, enriching your ICP database, and writing custom sequence variations. First meetings typically start landing shortly after going live in week three.</p>
+              </div>
+            </div>
+
+            <div class="glass-panel faq-item reveal">
+              <button class="faq-button" aria-expanded="false">
+                <span>What do you need from me?</span>
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content">
+                <p>A single 20-minute strategy onboarding call, your ICP criteria and best case studies, review/approval of campaign copy before launch, and a connected calendar link. We execute everything else.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 07: FINAL CTA -->
+      <section class="final-cta-section" id="cta">
+        <div class="final-cta-bloom"></div>
+
+        <div class="container final-cta-content">
+          <h2 class="reveal">One call. Twenty minutes. Fully mapped out.</h2>
+          <p class="final-cta-sub reveal">
+            We'll pressure-test your ICP, your offer, and detail our setup fee launch process. If it's not a fit, I'll tell you directly.
+          </p>
+
+          <button class="btn btn-accent trigger-booking reveal" style="font-size: 1.125rem; padding: 1.125rem 2.25rem;">
+            Book a strategy call
+          </button>
+
+          <p class="final-reassurance reveal">
+            [ No pitch deck. No pressure. No monthly retainer. Pay per show-up call. ]
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container footer-container">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 0.5rem; font-size: 1.125rem;">
+            <svg class="brand-icon" style="width:22px; height:22px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 2L2 10L16 18L30 10L16 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 22L16 30L30 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 16L16 24L30 16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" stroke-linecap="round"/>
+              <circle cx="16" cy="10" r="2.5" fill="currentColor"/>
+            </svg>
+            <span>FractalPitch</span>
+          </div>
+          <p style="font-size: 0.8125rem; color: var(--text-muted);">
+            Performance-based cold email agency for B2B SaaS and marketing agencies.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/lucabertibiz" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+          <span>&copy; 2026 FractalPitch. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- INTERACTIVE STRATEGY CALL BOOKING MODAL -->
+    <div class="modal-backdrop" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="glass-panel booking-modal" style="max-width: 680px; width: 92%; padding: 1.5rem;">
+        <button class="modal-close" id="modal-close-btn" aria-label="Close dialog">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+
+        <div id="modal-form-state">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; padding-right: 2rem;">
+            <div>
+              <h3 id="modal-title" style="margin-bottom: 0.25rem;">Book Your 20-Min Strategy Call</h3>
+              <p style="font-size: 0.875rem; color: var(--text-body);">
+                Turning LinkedIn & Cold Email Into High-Intent B2B Pipelines
+              </p>
+            </div>
+            <a href="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" target="_blank" rel="noopener noreferrer" class="btn btn-accent" style="font-size: 0.8125rem; padding: 0.5rem 1rem;">
+              Open in Cal.com ↗
+            </a>
+          </div>
+
+          <iframe src="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" style="width:100%; height:500px; border:none; border-radius:16px; background: rgba(255,255,255,0.85);" title="Book a call on Cal.com"></iframe>
+        </div>
+
+        <div id="modal-success-state" style="display: none; text-align: center; padding: 2rem 1rem;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-head);">Booking Received</h3>
+          <p style="color: var(--text-body);">We look forward to speaking with you!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VANILLA JAVASCRIPT LOGIC -->
+    <script>
+      // NAVBAR SCROLL SENSING
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // MOBILE MENU TOGGLE
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link, .mobile-menu button');
+
+      menuToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+      });
+
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // ACCORDION / FAQ
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const button = item.querySelector('.faq-button');
+        button.addEventListener('click', () => {
+          const isOpen = item.classList.contains('open');
+          
+          // Close all open items
+          faqItems.forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('.faq-button').setAttribute('aria-expanded', 'false');
+          });
+
+          // Toggle clicked item
+          if (!isOpen) {
+            item.classList.add('open');
+            button.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      // SCROLL REVEAL OBSERVER
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (!prefersReducedMotion) {
+        const revealElements = document.querySelectorAll('.reveal');
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        revealElements.forEach(el => revealObserver.observe(el));
+      } else {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+      }
+
+      // PROCESS STEP LINE SVG ANIMATION
+      const processLine = document.getElementById('process-line');
+      const processSection = document.getElementById('method');
+
+      if (processLine && processSection && !prefersReducedMotion) {
+        window.addEventListener('scroll', () => {
+          const rect = processSection.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          if (rect.top < windowHeight && rect.bottom > 0) {
+            const scrollPercent = Math.min(Math.max((windowHeight - rect.top) / (rect.height + windowHeight / 2), 0), 1);
+            const drawLength = 600 * scrollPercent;
+            processLine.style.strokeDashoffset = 600 - drawLength;
+          }
+        });
+      }
+
+      // ROI CALCULATOR ENGINE
+      const acvSlider = document.getElementById('acv-slider');
+      const closeSlider = document.getElementById('close-slider');
+      const marginSlider = document.getElementById('margin-slider');
+
+      const acvVal = document.getElementById('acv-val');
+      const closeVal = document.getElementById('close-val');
+      const marginVal = document.getElementById('margin-val');
+
+      const outDeals = document.getElementById('out-deals');
+      const outRevenue = document.getElementById('out-revenue');
+      const outProfit = document.getElementById('out-profit');
+      const outAnnual = document.getElementById('out-annual');
+      const calcNarrative = document.getElementById('calc-narrative');
+
+      const currencyFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      });
+
+      let currentVals = {
+        deals: 3.0,
+        revenue: 54000,
+        profit: 43200,
+        annual: 648000
+      };
+
+      let activeAnimFrames = {};
+
+      function animateValue(key, element, start, end, duration, isCurrency = true, decimals = 0) {
+        if (activeAnimFrames[key]) {
+          cancelAnimationFrame(activeAnimFrames[key]);
+        }
+
+        const startTime = performance.now();
+
+        function update(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const current = start + (end - start) * easeOut;
+
+          if (isCurrency) {
+            element.textContent = currencyFormatter.format(current);
+          } else {
+            element.textContent = current.toFixed(decimals);
+          }
+
+          if (progress < 1) {
+            activeAnimFrames[key] = requestAnimationFrame(update);
+          } else {
+            currentVals[key] = end;
+          }
+        }
+
+        activeAnimFrames[key] = requestAnimationFrame(update);
+      }
+
+      function updateCalculator() {
+        const acv = parseInt(acvSlider.value, 10);
+        const closeRate = parseInt(closeSlider.value, 10) / 100;
+        const margin = parseInt(marginSlider.value, 10) / 100;
+
+        // Displays
+        acvVal.textContent = currencyFormatter.format(acv);
+        closeVal.textContent = Math.round(closeRate * 100) + '%';
+        marginVal.textContent = Math.round(margin * 100) + '%';
+
+        acvSlider.setAttribute('aria-valuetext', currencyFormatter.format(acv));
+        closeSlider.setAttribute('aria-valuetext', Math.round(closeRate * 100) + '%');
+        marginSlider.setAttribute('aria-valuetext', Math.round(margin * 100) + '%');
+
+        // Calculations
+        const calls = 15;
+        const deals = calls * closeRate;
+        const monthlyRev = deals * acv;
+        const grossProfit = monthlyRev * margin;
+        const annualImpact = monthlyRev * 12;
+
+        const animDuration = prefersReducedMotion ? 0 : 450;
+
+        animateValue('deals', outDeals, currentVals.deals, deals, animDuration, false, 1);
+        animateValue('revenue', outRevenue, currentVals.revenue, monthlyRev, animDuration, true);
+        animateValue('profit', outProfit, currentVals.profit, grossProfit, animDuration, true);
+        animateValue('annual', outAnnual, currentVals.annual, annualImpact, animDuration, true);
+
+        calcNarrative.innerHTML = `At <strong>${currencyFormatter.format(acv)}</strong> ACV and a <strong>${Math.round(closeRate * 100)}%</strong> close rate, 15 qualified calls per month puts <strong>${currencyFormatter.format(annualImpact)}</strong> of new revenue on the table this year.`;
+      }
+
+      [acvSlider, closeSlider, marginSlider].forEach(slider => {
+        slider.addEventListener('input', updateCalculator);
+      });
+
+      // CANVAS HERO FRACTAL BACKGROUND
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas ? canvas.getContext('2d') : null;
+
+      if (canvas && ctx) {
+        let width, height;
+        let animationFrameId;
+        let mouseX = 0, mouseY = 0;
+        let targetMouseX = 0, targetMouseY = 0;
+
+        function resizeCanvas() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        window.addEventListener('mousemove', (e) => {
+          targetMouseX = (e.clientX - width / 2) * 0.03;
+          targetMouseY = (e.clientY - height / 2) * 0.03;
+        });
+
+        function drawRecursiveBranch(x, y, length, angle, depth, time) {
+          if (depth <= 0) return;
+
+          const endX = x + Math.cos(angle) * length;
+          const endY = y + Math.sin(angle) * length;
+
+          const pulseAlpha = 0.25 + Math.sin(time * 0.0015 + depth) * 0.15;
+          ctx.strokeStyle = `rgba(53, 215, 255, ${Math.max(0.2, pulseAlpha)})`;
+          ctx.lineWidth = depth === 1 ? 1.0 : 1.5;
+
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(endX, endY);
+          ctx.stroke();
+
+          // Branch node glow point
+          if (depth > 2) {
+            ctx.fillStyle = `rgba(53, 215, 255, ${pulseAlpha * 1.8})`;
+            ctx.beginPath();
+            ctx.arc(endX, endY, 2.5, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          const spread = 0.42 + Math.sin(time * 0.0008) * 0.05;
+          const shrink = 0.72;
+
+          drawRecursiveBranch(endX, endY, length * shrink, angle - spread, depth - 1, time);
+          drawRecursiveBranch(endX, endY, length * shrink, angle + spread, depth - 1, time);
+        }
+
+        function renderFractal(time) {
+          ctx.clearRect(0, 0, width, height);
+
+          mouseX += (targetMouseX - mouseX) * 0.05;
+          mouseY += (targetMouseY - mouseY) * 0.05;
+
+          ctx.save();
+          ctx.translate(width / 2 + mouseX, height / 2 + 80 + mouseY);
+
+          const rotation = (time * 0.0001) % (Math.PI * 2);
+          ctx.rotate(rotation);
+
+          const initialLength = Math.min(width, height) * 0.18;
+          const trunkAngle = -Math.PI / 2;
+
+          drawRecursiveBranch(0, 0, initialLength, trunkAngle, 6, time);
+          drawRecursiveBranch(0, 0, initialLength, trunkAngle + Math.PI * 0.666, 6, time);
+          drawRecursiveBranch(0, 0, initialLength, trunkAngle - Math.PI * 0.666, 6, time);
+
+          ctx.restore();
+
+          if (!prefersReducedMotion) {
+            animationFrameId = requestAnimationFrame(renderFractal);
+          }
+        }
+
+        // Pause animation when hero is scrolled off screen for performance
+        const heroSection = document.getElementById('hero');
+        const heroObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !prefersReducedMotion) {
+              if (!animationFrameId) animationFrameId = requestAnimationFrame(renderFractal);
+            } else {
+              if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+              }
+            }
+          });
+        });
+
+        heroObserver.observe(heroSection);
+
+        if (prefersReducedMotion) {
+          renderFractal(1000); // Draw single static frame
+        }
+      }
+
+      // MODAL BOOKING DIALOG HANDLERS
+      const bookingModal = document.getElementById('booking-modal');
+      const closeBtn = document.getElementById('modal-close-btn');
+      const triggerBtns = document.querySelectorAll('.trigger-booking');
+      const modalFormState = document.getElementById('modal-form-state');
+      const modalSuccessState = document.getElementById('modal-success-state');
+
+      function openModal() {
+        if (bookingModal) bookingModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        if (bookingModal) bookingModal.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          if (modalFormState) modalFormState.style.display = 'block';
+          if (modalSuccessState) modalSuccessState.style.display = 'none';
+        }, 300);
+      }
+
+      triggerBtns.forEach(btn => btn.addEventListener('click', openModal));
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+      if (bookingModal) {
+        bookingModal.addEventListener('click', (e) => {
+          if (e.target === bookingModal) closeModal();
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && bookingModal && bookingModal.classList.contains('open')) {
+          closeModal();
+        }
+      });
+
+      function handleBookingSubmit() {
+        if (modalFormState) modalFormState.style.display = 'none';
+        if (modalSuccessState) modalSuccessState.style.display = 'block';
+      }
+
+      // AUGUST INAUGURATION LIVE COUNTDOWN TIMER
+      function initAugustCountdown() {
+        // Target: Midnight August 31, 2026 (End of August)
+        const targetDate = new Date('2026-08-31T23:59:59').getTime();
+
+        function updateTimer() {
+          const now = new Date().getTime();
+          const distance = targetDate - now;
+
+          if (distance < 0) {
+            document.querySelectorAll('#timer-days, #timer-hours, #timer-mins, #timer-secs, #card-days, #card-hours, #card-mins, #card-secs').forEach(el => {
+              if (el) el.textContent = '00';
+            });
+            return;
+          }
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+          const pad = n => String(n).padStart(2, '0');
+
+          const tDays = document.getElementById('timer-days');
+          const tHours = document.getElementById('timer-hours');
+          const tMins = document.getElementById('timer-mins');
+          const tSecs = document.getElementById('timer-secs');
+
+          if (tDays) tDays.textContent = pad(days);
+          if (tHours) tHours.textContent = pad(hours);
+          if (tMins) tMins.textContent = pad(mins);
+          if (tSecs) tSecs.textContent = pad(secs);
+
+          const cDays = document.getElementById('card-days');
+          const cHours = document.getElementById('card-hours');
+          const cMins = document.getElementById('card-mins');
+          const cSecs = document.getElementById('card-secs');
+
+          if (cDays) cDays.textContent = pad(days);
+          if (cHours) cHours.textContent = pad(hours);
+          if (cMins) cMins.textContent = pad(mins);
+          if (cSecs) cSecs.textContent = pad(secs);
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+      }
+
+      initAugustCountdown();
+    </script>
+  </body>
+</html>
