@@ -334,60 +334,58 @@
 
       /* Liquid Glass Card Component (inspired by liquidglassdesign.com) */
       .glass-panel {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(235, 248, 255, 0.8) 50%, rgba(255, 255, 255, 0.92) 100%);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(235, 248, 255, 0.88) 50%, rgba(255, 255, 255, 0.95) 100%);
         border: 1.5px solid rgba(53, 215, 255, 0.65);
         backdrop-filter: blur(28px) saturate(220%);
         -webkit-backdrop-filter: blur(28px) saturate(220%);
         border-radius: var(--radius-lg);
         box-shadow: 
           0 20px 50px -10px rgba(6, 22, 38, 0.08),
-          0 0 22px rgba(53, 215, 255, 0.35),
-          inset 0 2px 3px rgba(255, 255, 255, 1),
-          inset 0 -2px 8px rgba(53, 215, 255, 0.5),
-          inset 0 0 15px rgba(255, 255, 255, 0.6);
+          0 0 16px rgba(53, 215, 255, 0.25),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.8);
         transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease;
         position: relative;
         overflow: hidden;
+        background-clip: padding-box;
       }
 
       .glass-panel::before {
         content: '';
         position: absolute;
         top: 0;
-        left: -50%;
-        width: 200%;
-        height: 2px;
-        background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 20%, rgba(53, 215, 255, 1) 50%, rgba(255, 255, 255, 0.95) 80%, transparent 100%);
-        box-shadow: 0 0 10px rgba(53, 215, 255, 0.8);
+        left: 0;
+        right: 0;
+        height: 1.5px;
+        background: linear-gradient(90deg, transparent 0%, rgba(53, 215, 255, 0.8) 30%, rgba(255, 255, 255, 1) 50%, rgba(53, 215, 255, 0.8) 70%, transparent 100%);
         pointer-events: none;
+        z-index: 2;
       }
 
       .glass-panel::after {
         content: '';
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.45) 0%, transparent 70%);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 0%, rgba(53, 215, 255, 0.08) 0%, transparent 70%);
         pointer-events: none;
-        opacity: 0.6;
+        z-index: 0;
+        opacity: 0.8;
         transition: opacity 0.35s ease;
       }
 
       .glass-panel:hover {
-        border-color: rgba(53, 215, 255, 1);
+        border-color: rgba(53, 215, 255, 0.95);
         box-shadow: 
-          0 30px 65px -10px rgba(6, 22, 38, 0.15),
-          0 0 35px rgba(53, 215, 255, 0.65),
-          inset 0 3px 5px rgba(255, 255, 255, 1),
-          inset 0 -2px 10px rgba(53, 215, 255, 0.7);
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(220, 248, 255, 0.88) 50%, rgba(255, 255, 255, 0.95) 100%);
-        transform: translateY(-4px) scale(1.006);
+          0 25px 55px -10px rgba(6, 22, 38, 0.12),
+          0 0 28px rgba(53, 215, 255, 0.45);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(220, 248, 255, 0.92) 50%, rgba(255, 255, 255, 0.98) 100%);
+        transform: translateY(-4px) scale(1.004);
       }
 
       .glass-panel:hover::after {
-        opacity: 0.8;
+        opacity: 1;
       }
 
       /* Artistic Flair Utility Classes */
@@ -725,50 +723,70 @@
 
       .mobile-toggle {
         display: none;
-        background: transparent;
-        border: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(53, 215, 255, 0.1);
+        border: 1.5px solid rgba(53, 215, 255, 0.45);
+        border-radius: 8px;
         color: var(--text-head);
         cursor: pointer;
-        padding: 0.5rem;
-        z-index: 101;
+        padding: 0.45rem 0.55rem;
+        z-index: 1001;
+        min-width: 44px;
+        min-height: 44px;
+        transition: all 0.2s ease;
+      }
+
+      .mobile-toggle:hover {
+        background: rgba(53, 215, 255, 0.2);
+        border-color: #35D7FF;
       }
 
       /* Mobile Menu Overlay */
       .mobile-menu {
-        display: none;
         position: fixed;
         inset: 0;
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(28px);
-        -webkit-backdrop-filter: blur(28px);
-        z-index: 99;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(28px) saturate(200%);
+        -webkit-backdrop-filter: blur(28px) saturate(200%);
+        z-index: 1000;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
-        padding: 2rem;
+        gap: 1.25rem;
+        padding: 2rem 1.5rem;
         opacity: 0;
+        visibility: hidden;
         pointer-events: none;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
       }
 
       .mobile-menu.open {
         opacity: 1;
+        visibility: visible;
         pointer-events: auto;
       }
 
       .mobile-menu a {
         font-family: var(--font-head);
-        font-size: 1.75rem;
-        font-weight: 600;
+        font-size: 1.35rem;
+        font-weight: 700;
         color: var(--text-head);
-        transition: color 0.2s ease;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        padding: 0.6rem 1.25rem;
+        border-radius: 8px;
+        text-align: center;
+        width: 100%;
+        max-width: 280px;
+        box-sizing: border-box;
       }
 
       .mobile-menu a:hover,
       .mobile-menu a.active {
-        color: #35D7FF;
-        font-weight: 700;
+        color: #0077A3;
+        background: rgba(53, 215, 255, 0.12);
       }
 
       /* Hero Section */
@@ -1056,17 +1074,18 @@
         margin-top: 2.5rem;
         position: relative;
         overflow: hidden;
+        border: 1.5px solid rgba(53, 215, 255, 0.75);
+        box-shadow: 0 20px 50px -10px rgba(6, 22, 38, 0.08), 0 0 20px rgba(53, 215, 255, 0.25);
+        background-clip: padding-box;
       }
 
       .calculator-card::before {
         content: '';
         position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(0, 136, 204, 0.08) 0%, transparent 60%);
+        inset: 0;
+        background: radial-gradient(circle at 90% 10%, rgba(53, 215, 255, 0.08) 0%, transparent 60%);
         pointer-events: none;
+        z-index: 0;
       }
 
       .calc-grid {
@@ -1074,6 +1093,8 @@
         grid-template-columns: 1.1fr 1fr;
         gap: clamp(2.5rem, 5vw, 4rem);
         align-items: start;
+        position: relative;
+        z-index: 1;
       }
 
       .calc-inputs {
@@ -1163,11 +1184,13 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        background: rgba(240, 246, 254, 0.85);
-        border: 1px solid var(--glass-border);
+        background: rgba(240, 246, 254, 0.95);
+        border: 1.5px solid rgba(53, 215, 255, 0.5);
         padding: 2rem;
         border-radius: var(--radius-md);
-        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 20px rgba(6, 22, 38, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+        position: relative;
+        z-index: 1;
       }
 
       .output-item {
@@ -1209,6 +1232,8 @@
         font-size: 0.9375rem;
         color: var(--text-body);
         line-height: 1.6;
+        position: relative;
+        z-index: 1;
       }
 
       .calc-disclaimer {
@@ -1216,10 +1241,14 @@
         color: var(--text-muted);
         margin-top: 1.5rem;
         line-height: 1.5;
+        position: relative;
+        z-index: 1;
       }
 
       .calc-cta-wrap {
         margin-top: 2.25rem;
+        position: relative;
+        z-index: 1;
       }
 
       /* Section 04: The Model */
@@ -1681,7 +1710,7 @@
         }
 
         .mobile-toggle {
-          display: block;
+          display: inline-flex;
         }
 
         .problem-grid, .included-grid {
@@ -1762,6 +1791,21 @@
       }
 
       @media (max-width: 480px) {
+        .brand-logo {
+          font-size: 1.1rem;
+        }
+
+        .brand-icon {
+          width: 24px;
+          height: 24px;
+        }
+
+        .header-cta {
+          font-size: 0.75rem;
+          padding: 0.4rem 0.65rem;
+          white-space: nowrap;
+        }
+
         .calculator-card {
           padding: 1.25rem 0.875rem;
         }
@@ -1790,12 +1834,6 @@
         .calc-disclaimer {
           font-size: 0.75rem;
           margin-top: 1rem;
-        }
-
-        .btn {
-          width: 100%;
-          white-space: normal;
-          text-align: center;
         }
       }
 
@@ -1877,11 +1915,11 @@
           <li><a href="#faq" class="nav-link">Questions</a></li>
         </ul>
 
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <button class="btn btn-accent trigger-booking" aria-label="Book a call">Book a call</button>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <button class="btn btn-accent trigger-booking header-cta" aria-label="Book a call">Book a call</button>
           <button class="mobile-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12h18M3 6h18M3 18h18"/>
             </svg>
           </button>
         </div>
@@ -2479,17 +2517,34 @@
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileNavLinks = document.querySelectorAll('.mobile-nav-link, .mobile-menu button');
 
-      menuToggle.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', isOpen);
-      });
-
-      mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
+      function setMenuState(open) {
+        if (!mobileMenu || !menuToggle) return;
+        if (open) {
+          mobileMenu.classList.add('open');
+          menuToggle.setAttribute('aria-expanded', 'true');
+          menuToggle.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+          document.body.style.overflow = 'hidden';
+        } else {
           mobileMenu.classList.remove('open');
           menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>`;
+          document.body.style.overflow = '';
+        }
+      }
+
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = mobileMenu.classList.contains('open');
+          setMenuState(!isOpen);
         });
-      });
+
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            setMenuState(false);
+          });
+        });
+      }
 
       // ACCORDION / FAQ
       const faqItems = document.querySelectorAll('.faq-item');
