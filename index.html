@@ -1471,14 +1471,14 @@
       .modal-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(6, 22, 38, 0.75);
+        background: rgba(6, 22, 38, 0.8);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         z-index: 9999;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1.25rem;
+        padding: 1rem;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.25s ease;
@@ -1492,17 +1492,18 @@
       }
 
       .booking-modal {
-        max-width: 720px;
-        width: 95%;
-        max-height: 90vh;
-        padding: 1.75rem;
+        max-width: 780px;
+        width: 100%;
+        height: 86vh;
+        max-height: 680px;
+        padding: 1.25rem 1.5rem;
         position: relative;
         transform: scale(0.96) translateY(12px);
         transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         background: #ffffff;
         border: 1px solid rgba(53, 215, 255, 0.4);
-        box-shadow: 0 20px 50px rgba(6, 22, 38, 0.25), 0 0 30px rgba(53, 215, 255, 0.15);
-        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(6, 22, 38, 0.3), 0 0 30px rgba(53, 215, 255, 0.2);
+        border-radius: 18px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -1868,6 +1869,7 @@
         </a>
 
         <ul class="nav-links">
+          <li><a href="#problem" class="nav-link">The Problem</a></li>
           <li><a href="#method" class="nav-link">Method</a></li>
           <li><a href="#calculator" class="nav-link">Calculator</a></li>
           <li><a href="#model" class="nav-link">The Model</a></li>
@@ -1888,6 +1890,7 @@
 
     <!-- Mobile Fullscreen Glass Overlay Menu -->
     <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <a href="#problem" class="mobile-nav-link">The Problem</a>
       <a href="#method" class="mobile-nav-link">Method</a>
       <a href="#calculator" class="mobile-nav-link">Calculator</a>
       <a href="#model" class="mobile-nav-link">The Model</a>
@@ -1912,7 +1915,7 @@
           <h1 class="hero-title reveal">Get <span class="brand-cyan">qualified calls</span> every month through a <span class="brand-cyan">done-for-you</span> cold email lead generation system.</h1>
 
           <p class="hero-subhead reveal">
-            Researched, hand-crafted cold email for B2B SaaS. During our August agency inauguration, you pay only <strong>$150 per qualified show-up call</strong> (normally $250/call) plus setup fee. Zero monthly retainers, zero hidden charges, zero long-term commitments.
+            Researched, hand-crafted cold email for B2B SaaS and Agencies. During our August agency inauguration, you pay only <strong>$150 per qualified show-up call</strong> (normally $250/call) plus setup fee. Zero monthly retainers, zero hidden charges, zero long-term commitments.
           </p>
 
           <div class="hero-cta-group reveal">
@@ -2388,35 +2391,25 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
 
-        <div id="modal-form-state" style="display: flex; flex-direction: column; flex: 1; height: 100%;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.75rem; padding-right: 2.5rem;">
+        <div id="modal-form-state" style="display: flex; flex-direction: column; flex: 1; min-height: 0; height: 100%;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.65rem; flex-wrap: wrap; gap: 0.5rem; padding-right: 2.5rem;">
             <div>
-              <h3 id="modal-title" style="margin: 0 0 0.25rem 0; font-size: 1.25rem; color: var(--text-head); font-weight: 700;">Book Your 20-Min Strategy Call</h3>
-              <p style="font-size: 0.85rem; color: var(--text-body); margin: 0;">
-                Turning LinkedIn & Cold Email Into High-Intent B2B Pipelines
+              <h3 id="modal-title" style="margin: 0 0 0.15rem 0; font-size: 1.15rem; color: var(--text-head); font-weight: 700;">Book Your 20-Min Strategy Call</h3>
+              <p style="font-size: 0.8rem; color: var(--text-body); margin: 0;">
+                Pay per qualified call • $0 monthly retainers
               </p>
             </div>
-            <a href="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" target="_blank" rel="noopener noreferrer" class="btn btn-accent" style="font-size: 0.85rem; padding: 0.5rem 1rem; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700;">
-              Open Direct Cal.com Link ↗
+            <a href="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" target="_blank" rel="noopener noreferrer" class="btn btn-accent" style="font-size: 0.78rem; padding: 0.4rem 0.75rem; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700;">
+              Open Cal.com Tab ↗
             </a>
           </div>
 
-          <!-- Direct Link Fallback Banner -->
-          <div style="background: rgba(53, 215, 255, 0.08); border: 1px solid rgba(53, 215, 255, 0.3); border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-size: 0.8125rem; color: var(--text-head); font-weight: 500;">
-              📅 Prefer to open directly in Cal.com?
-            </span>
-            <a href="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" target="_blank" rel="noopener noreferrer" style="font-size: 0.8125rem; font-weight: 700; color: #0077A3; text-decoration: underline;">
-              Click here to launch full calendar ↗
-            </a>
-          </div>
-
-          <!-- Embed Container -->
-          <div id="cal-embed-container" style="width:100%; flex: 1; min-height: 480px; height: 520px; border-radius: 12px; overflow: auto; background: #ffffff; border: 1px solid rgba(6, 22, 38, 0.1); position: relative;">
+          <!-- Embed Container: Fills 100% of remaining space -->
+          <div id="cal-embed-container" style="width:100%; flex: 1; min-height: 0; border-radius: 12px; overflow: hidden; background: #ffffff; border: 1px solid rgba(6, 22, 38, 0.1); position: relative;">
             <iframe 
               id="cal-iframe"
-              src="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines" 
-              style="width: 100%; height: 100%; border: none; min-height: 480px;"
+              src="https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines?embed=true&layout=month_view" 
+              style="width: 100%; height: 100%; border: none; display: block;"
               allow="camera; microphone; autoplay; payment; clipboard-write; scroll"
               title="Book a call on Cal.com">
             </iframe>
@@ -2804,65 +2797,28 @@
         }
       }
 
-      // MODAL BOOKING DIALOG HANDLERS & CAL.COM INTEGRATION
-      const bookingModal = document.getElementById('booking-modal');
-      const closeBtn = document.getElementById('modal-close-btn');
+      // DIRECT CAL.COM BOOKING HANDLER
+      const CAL_BOOKING_URL = 'https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines';
       const triggerBtns = document.querySelectorAll('.trigger-booking');
-      const modalFormState = document.getElementById('modal-form-state');
-      const modalSuccessState = document.getElementById('modal-success-state');
 
-      // Cal.com Official Embed Snippet Setup
-      (function (C, A, L, p, a, c, l) {
-        var q = null;
-        C[L] = C[L] || function () {
-          var r = (C[L].q = C[L].q || []);
-          r.push(arguments);
-        };
-        c = A.createElement(p);
-        l = A.getElementsByTagName(p)[0];
-        c.async = 1;
-        c.src = a;
-        if (l && l.parentNode) l.parentNode.insertBefore(c, l);
-      })(window, document, "Cal", "script", "https://app.cal.com/embed/embed.js", "init");
-
-      if (window.Cal) {
-        try {
-          window.Cal("init", { origin: "https://cal.com" });
-          window.Cal("ui", {
-            styles: { branding: { brandColor: "#35D7FF" } },
-            hideEventTypeDetails: false,
-            layout: "month_view"
-          });
-        } catch(e) {
-          console.warn('Cal.com embed init notice:', e);
+      function directBookingRedirect(e) {
+        if (e) {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopPropagation) e.stopPropagation();
         }
-      }
 
-      function openModal(e) {
-        if (e && e.preventDefault) e.preventDefault();
-        if (bookingModal) bookingModal.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuToggle = document.getElementById('menu-toggle');
+        if (mobileMenu) mobileMenu.classList.remove('open');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
 
-        const calIframe = document.getElementById('cal-iframe');
-        if (calIframe) {
-          const calUrl = 'https://cal.com/lucabertilinkedin/turning-linkedin-cold-email-into-b2b-pipelines';
-          if (!calIframe.getAttribute('src') || calIframe.src === 'about:blank') {
-            calIframe.src = calUrl;
-          }
-        }
-      }
-
-      function closeModal() {
-        if (bookingModal) bookingModal.classList.remove('open');
-        document.body.style.overflow = '';
-        setTimeout(() => {
-          if (modalFormState) modalFormState.style.display = 'flex';
-          if (modalSuccessState) modalSuccessState.style.display = 'none';
-        }, 300);
+        // Open Cal.com directly in a new tab
+        window.open(CAL_BOOKING_URL, '_blank', 'noopener,noreferrer');
       }
 
       triggerBtns.forEach(btn => {
-        btn.addEventListener('click', openModal);
+        btn.addEventListener('click', directBookingRedirect);
       });
 
       if (closeBtn) closeBtn.addEventListener('click', closeModal);
