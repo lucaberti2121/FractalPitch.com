@@ -962,13 +962,13 @@
       .calc-inputs {
         display: flex;
         flex-direction: column;
-        gap: 2.25rem;
+        gap: 1.5rem;
       }
 
       .slider-group {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.65rem;
       }
 
       .slider-header {
@@ -979,13 +979,13 @@
 
       .slider-label {
         font-size: 0.9375rem;
-        font-weight: 500;
+        font-weight: 600;
         color: var(--text-head);
       }
 
       .slider-value {
         font-family: var(--font-mono);
-        font-size: 1.25rem;
+        font-size: 1.15rem;
         font-weight: 700;
         color: var(--accent);
       }
@@ -1045,53 +1045,127 @@
       .calc-outputs {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.25rem;
         background: rgba(240, 246, 254, 0.95);
         border: 1.5px solid rgba(53, 215, 255, 0.5);
-        padding: 2rem;
+        padding: 1.75rem 2rem;
         border-radius: var(--radius-md);
         box-shadow: 0 4px 20px rgba(6, 22, 38, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.9);
         position: relative;
         z-index: 1;
       }
 
+      .calc-outputs-hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid rgba(0, 136, 204, 0.15);
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .roi-badge-wrap {
+        display: flex;
+        align-items: center;
+      }
+
+      .roi-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: linear-gradient(135deg, rgba(53, 215, 255, 0.16), rgba(0, 136, 204, 0.1));
+        border: 1.5px solid rgba(53, 215, 255, 0.8);
+        color: #0077A3;
+        padding: 0.4rem 0.95rem;
+        border-radius: 9999px;
+        font-family: var(--font-mono);
+        font-size: 1.05rem;
+        font-weight: 800;
+        box-shadow: 0 2px 10px rgba(53, 215, 255, 0.2);
+        white-space: nowrap;
+      }
+
+      .calc-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem 1.5rem;
+      }
+
       .output-item {
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(0, 136, 204, 0.1);
+        gap: 0.2rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid rgba(0, 136, 204, 0.08);
       }
 
       .output-item:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
+        border-bottom: 1px solid rgba(0, 136, 204, 0.08);
       }
 
       .output-label {
-        font-size: 0.8125rem;
+        font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.08em;
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      .output-sub {
+        font-size: 0.75rem;
         color: var(--text-muted);
       }
 
       .output-num {
         font-family: var(--font-mono);
-        font-size: 1.5rem;
+        font-size: 1.45rem;
         font-weight: 700;
         color: var(--text-head);
       }
 
       .output-item.hero-output .output-num {
-        font-size: clamp(2.25rem, 4vw, 3rem);
+        font-size: clamp(2.15rem, 4vw, 2.75rem);
         color: var(--accent);
+        line-height: 1.1;
+      }
+
+      .calc-ratio-box {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.875rem 1.15rem;
+        background: rgba(53, 215, 255, 0.08);
+        border: 1px solid rgba(53, 215, 255, 0.4);
+        border-radius: var(--radius-md);
+        margin-top: 0.35rem;
+      }
+
+      .calc-ratio-icon {
+        color: #0088CC;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .calc-ratio-text {
+        font-size: 0.925rem;
+        color: var(--text-head);
+        font-weight: 500;
+        line-height: 1.45;
+      }
+
+      .calc-ratio-text strong {
+        color: var(--accent);
+        font-weight: 700;
       }
 
       .calc-sentence {
-        margin-top: 2rem;
-        padding-top: 1.5rem;
+        margin-top: 0.5rem;
+        padding-top: 1rem;
         border-top: 1px solid var(--glass-border);
-        font-size: 0.9375rem;
+        font-size: 0.9rem;
         color: var(--text-body);
         line-height: 1.6;
         position: relative;
@@ -1101,7 +1175,7 @@
       .calc-disclaimer {
         font-size: 0.78125rem;
         color: var(--text-muted);
-        margin-top: 1.5rem;
+        margin-top: 0.75rem;
         line-height: 1.5;
         position: relative;
         z-index: 1;
@@ -1650,6 +1724,17 @@
           flex-wrap: wrap;
           padding: 0.75rem 1rem;
         }
+
+        .calc-metrics-grid {
+          grid-template-columns: 1fr;
+          gap: 0.875rem;
+        }
+
+        .calc-outputs-hero {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
       }
 
       @media (max-width: 480px) {
@@ -1901,7 +1986,7 @@
         </div>
       </section>
 
-      <!-- SECTION 03: ROI CALCULATOR -->
+      <!-- SECTION 03: ROI & PIPELINE CALCULATOR -->
       <section id="calculator">
         <div class="container">
           <div class="section-label reveal">
@@ -1909,77 +1994,151 @@
             <span>The maths</span>
           </div>
 
-          <h2 class="reveal">Run the numbers on your own deal size.</h2>
-          <p class="reveal" style="margin-bottom: 1.5rem;">Based on an average of 15 qualified calls per month.</p>
+          <h2 class="reveal">Run the numbers on your pipeline economics.</h2>
+          <p class="reveal" style="margin-bottom: 1.5rem;">Interactive unit economics & cohort return model. Transparent show-up pricing with a $650/mo tech fee.</p>
 
           <div class="glass-panel calculator-card reveal">
             <div class="calc-grid">
-              <!-- Inputs Column -->
+              <!-- Inputs Column (in exact requested order) -->
               <div class="calc-inputs">
+                <!-- 1. Cost per shown call -->
                 <div class="slider-group">
                   <div class="slider-header">
-                    <label for="acv-slider" class="slider-label">Average deal fee / commission</label>
-                    <span class="slider-value" id="acv-val">$25,000</span>
+                    <label for="cost-slider" class="slider-label">Cost per shown call</label>
+                    <span class="slider-value" id="cost-val">$250</span>
                   </div>
-                  <input type="range" id="acv-slider" min="5000" max="250000" step="5000" value="25000" aria-label="Average deal fee or commission" aria-valuetext="$25,000" />
+                  <input type="range" id="cost-slider" min="150" max="500" step="25" value="250" aria-label="Cost per shown call" aria-valuetext="$250" />
                 </div>
 
+                <!-- 2. Shown calls per month -->
                 <div class="slider-group">
                   <div class="slider-header">
-                    <label for="close-slider" class="slider-label">Close rate from qualified call</label>
+                    <label for="calls-slider" class="slider-label">Shown calls per month</label>
+                    <span class="slider-value" id="calls-val">15 calls</span>
+                  </div>
+                  <input type="range" id="calls-slider" min="5" max="40" step="1" value="15" aria-label="Shown calls per month" aria-valuetext="15 calls" />
+                </div>
+
+                <!-- 3. Close rate -->
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="close-slider" class="slider-label">Close rate</label>
                     <span class="slider-value" id="close-val">20%</span>
                   </div>
                   <input type="range" id="close-slider" min="5" max="50" step="1" value="20" aria-label="Close rate percentage" aria-valuetext="20%" />
                 </div>
 
+                <!-- 4. How much you charge per month -->
                 <div class="slider-group">
                   <div class="slider-header">
-                    <label for="margin-slider" class="slider-label">Gross margin</label>
-                    <span class="slider-value" id="margin-val">80%</span>
+                    <label for="charge-slider" class="slider-label">How much you charge per month</label>
+                    <span class="slider-value" id="charge-val">$3,000/mo</span>
                   </div>
-                  <input type="range" id="margin-slider" min="40" max="95" step="5" value="80" aria-label="Gross margin percentage" aria-valuetext="80%" />
+                  <input type="range" id="charge-slider" min="1000" max="15000" step="250" value="3000" aria-label="Monthly client fee" aria-valuetext="$3,000" />
                 </div>
 
+                <!-- 5. Average retention (in months) -->
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="retention-slider" class="slider-label">Average retention (in months)</label>
+                    <span class="slider-value" id="retention-val">6 months</span>
+                  </div>
+                  <input type="range" id="retention-slider" min="2" max="24" step="1" value="6" aria-label="Average retention in months" aria-valuetext="6 months" />
+                </div>
+
+                <!-- Fixed Monthly Tech Fee Callout -->
                 <div class="locked-assumption">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                   </svg>
-                  <span>Qualified calls per month: <strong>15</strong></span>
+                  <span>Fixed tech fee: <strong>$650/month</strong> (dedicated inboxes, domains & sending infrastructure)</span>
                 </div>
               </div>
 
               <!-- Outputs Column -->
               <div class="calc-outputs">
-                <div class="output-item">
-                  <span class="output-label">Closed mandates / month</span>
-                  <span class="output-num" id="out-deals">3.0</span>
+                <!-- Top Hero: Cohort Revenue + Multiplier Badge -->
+                <div class="calc-outputs-hero">
+                  <div class="output-item hero-output" style="border: none; padding: 0;">
+                    <span class="output-label">Revenue per month cohort</span>
+                    <span class="output-num" id="out-cohort-hero">$54,000</span>
+                    <span class="output-sub">Total contract value from 1 month's closed cohort</span>
+                  </div>
+                  <div class="roi-badge-wrap">
+                    <div class="roi-badge" id="roi-badge">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                      </svg>
+                      <span id="out-multiplier">12.3X</span>
+                      <span>ROI</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="output-item">
-                  <span class="output-label">New advisory revenue / month</span>
-                  <span class="output-num" id="out-revenue">$75,000</span>
+                <!-- Requested Metrics Grid -->
+                <div class="calc-metrics-grid">
+                  <div class="output-item">
+                    <span class="output-label">Client lifetime value (LTV)</span>
+                    <span class="output-num" id="out-ltv">$18,000</span>
+                    <span class="output-sub">Monthly charge × retention</span>
+                  </div>
+
+                  <div class="output-item">
+                    <span class="output-label">New clients per month</span>
+                    <span class="output-num" id="out-clients">3.0</span>
+                    <span class="output-sub">Shown calls × close rate</span>
+                  </div>
+
+                  <div class="output-item">
+                    <span class="output-label">Monthly investment</span>
+                    <span class="output-num" id="out-investment">$4,400</span>
+                    <span class="output-sub">Calls cost + $650 tech fee</span>
+                  </div>
+
+                  <div class="output-item">
+                    <span class="output-label">Cost per client won (CAC)</span>
+                    <span class="output-num" id="out-cac">$1,467</span>
+                    <span class="output-sub">Monthly spend ÷ clients won</span>
+                  </div>
+
+                  <div class="output-item">
+                    <span class="output-label">New MRR added monthly</span>
+                    <span class="output-num" id="out-mrr">$9,000</span>
+                    <span class="output-sub">New recurring revenue/mo</span>
+                  </div>
+
+                  <div class="output-item">
+                    <span class="output-label">Revenue month cohort</span>
+                    <span class="output-num" id="out-cohort">$54,000</span>
+                    <span class="output-sub">New clients × Client LTV</span>
+                  </div>
                 </div>
 
-                <div class="output-item">
-                  <span class="output-label">Gross profit / month</span>
-                  <span class="output-num" id="out-profit">$60,000</span>
+                <!-- Highlighted Ratio Callout -->
+                <div class="calc-ratio-box">
+                  <div class="calc-ratio-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                      <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                  </div>
+                  <div class="calc-ratio-text" id="calc-ratio-text">
+                    For every <strong>$2,000</strong> spent, you generate <strong>$24,545</strong> in client contract value (<strong>12.3X ROI</strong>).
+                  </div>
                 </div>
 
-                <div class="output-item hero-output">
-                  <span class="output-label">Annual profit impact</span>
-                  <span class="output-num" id="out-annual">$720,000</span>
-                </div>
+                <!-- Dynamic Detailed Narrative -->
+                <p class="calc-sentence" id="calc-narrative">
+                  At <strong>$250</strong>/shown call with <strong>15</strong> calls/mo and a <strong>20%</strong> close rate, your total monthly investment of <strong>$4,400</strong> (including the $650 tech fee) acquires <strong>3.0</strong> new clients, adding <strong>$9,000</strong> in monthly recurring revenue and <strong>$54,000</strong> in total lifetime cohort revenue.
+                </p>
+
+                <p class="calc-disclaimer">
+                  * Figures are illustrative cohort projections based on your selected show-up volume, close rate, retention, and pricing model. Includes the fixed $650/month tech fee. Actual conversions vary based on target criteria, offer strength, and sales execution.
+                </p>
               </div>
             </div>
-
-            <p class="calc-sentence" id="calc-narrative">
-              At $25,000 average deal fee, a 20% close rate, and 80% gross margin, 15 qualified calls/mo puts $900,000 revenue and $720,000 net profit on the table this year.
-            </p>
-
-            <p class="calc-disclaimer">
-              * Figures are illustrative projections based on an average of 15 qualified calls per month. Actual results vary based on your offer, ICP fit, sales process, and market conditions. Nothing here is a guarantee of performance.
-            </p>
 
             <div class="calc-cta-wrap">
               <button class="btn btn-accent trigger-booking">Book a call to pressure-test these numbers</button>
@@ -2034,7 +2193,7 @@
                   <div style="margin-top: 0.35rem; display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
                     <span style="font-size: 2rem; font-weight: 800; color: #041B29;">$250</span>
                     <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted);">/ show-up call</span>
-                    <span style="font-size: 0.8rem; font-weight: 600; color: #0077A3;">(+ monthly tech fee)</span>
+                    <span style="font-size: 0.8rem; font-weight: 600; color: #0077A3;">(+ $650/mo tech fee)</span>
                   </div>
                 </div>
                 <span class="dominant-badge">Performance Model</span>
@@ -2047,7 +2206,7 @@
                 </li>
                 <li class="model-list-item">
                   <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Transparent monthly tech fee (covers dedicated inboxes & tools)</span>
+                  <span>Transparent $650/month tech fee (covers dedicated inboxes, domains & sending tools)</span>
                 </li>
                 <li class="model-list-item">
                   <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -2146,7 +2305,7 @@
                 <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
               </button>
               <div class="faq-content">
-                <p>You only pay per qualified call that shows up ($250 per show-up call, plus a monthly tech fee). There are zero monthly management retainers, no hidden charges, and no long-term contracts.</p>
+                <p>You only pay per qualified call that shows up ($250 per show-up call, plus a flat $650/month tech fee). There are zero monthly management retainers, no hidden charges, and no long-term contracts.</p>
               </div>
             </div>
 
@@ -2156,7 +2315,7 @@
                 <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
               </button>
               <div class="faq-content">
-                <p>No. That is our core promise. You only pay per show-up call plus a monthly tech fee that covers dedicated inboxes and sending infrastructure. We do not charge $3k–$8k/month recurring management retainers like traditional agencies.</p>
+                <p>No. That is our core promise. You only pay per show-up call plus a flat $650/month tech fee that directly covers dedicated inboxes, secondary domains, verification tools, and sending infrastructure. We do not charge $3k–$8k/month recurring management retainers like traditional agencies.</p>
               </div>
             </div>
 
@@ -2176,7 +2335,7 @@
                 <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
               </button>
               <div class="faq-content">
-                <p>Normal agencies lock you into 6-month contracts with $4k/month retainers regardless of whether they deliver pipeline. FractalPitch charges strictly per qualified call that shows up (plus a monthly tech fee), with $0 monthly management retainers.</p>
+                <p>Normal agencies lock you into 6-month contracts with $4k/month retainers regardless of whether they deliver pipeline. FractalPitch charges strictly per qualified call that shows up (plus a flat $650/mo tech fee), with $0 monthly management retainers.</p>
               </div>
             </div>
 
@@ -2479,20 +2638,31 @@
         });
       }
 
-      // ROI CALCULATOR ENGINE
-      const acvSlider = document.getElementById('acv-slider');
+      // ROI & PIPELINE COHORT CALCULATOR ENGINE
+      const costSlider = document.getElementById('cost-slider');
+      const callsSlider = document.getElementById('calls-slider');
       const closeSlider = document.getElementById('close-slider');
-      const marginSlider = document.getElementById('margin-slider');
+      const chargeSlider = document.getElementById('charge-slider');
+      const retentionSlider = document.getElementById('retention-slider');
 
-      const acvVal = document.getElementById('acv-val');
+      const costVal = document.getElementById('cost-val');
+      const callsVal = document.getElementById('calls-val');
       const closeVal = document.getElementById('close-val');
-      const marginVal = document.getElementById('margin-val');
+      const chargeVal = document.getElementById('charge-val');
+      const retentionVal = document.getElementById('retention-val');
 
-      const outDeals = document.getElementById('out-deals');
-      const outRevenue = document.getElementById('out-revenue');
-      const outProfit = document.getElementById('out-profit');
-      const outAnnual = document.getElementById('out-annual');
+      const outCohortHero = document.getElementById('out-cohort-hero');
+      const outMultiplier = document.getElementById('out-multiplier');
+      const outLtv = document.getElementById('out-ltv');
+      const outClients = document.getElementById('out-clients');
+      const outInvestment = document.getElementById('out-investment');
+      const outCac = document.getElementById('out-cac');
+      const outMrr = document.getElementById('out-mrr');
+      const outCohort = document.getElementById('out-cohort');
+      const calcRatioText = document.getElementById('calc-ratio-text');
       const calcNarrative = document.getElementById('calc-narrative');
+
+      const TECH_FEE = 650;
 
       const currencyFormatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -2501,15 +2671,19 @@
       });
 
       let currentVals = {
-        deals: 3.0,
-        revenue: 75000,
-        profit: 60000,
-        annual: 720000
+        cohortHero: 54000,
+        ltv: 18000,
+        clients: 3.0,
+        investment: 4400,
+        cac: 1467,
+        mrr: 9000,
+        cohort: 54000
       };
 
       let activeAnimFrames = {};
 
       function animateValue(key, element, targetEnd, duration, isCurrency = true, decimals = 0) {
+        if (!element) return;
         if (activeAnimFrames[key]) {
           cancelAnimationFrame(activeAnimFrames[key]);
         }
@@ -2550,40 +2724,69 @@
       }
 
       function updateCalculator() {
-        const acv = parseInt(acvSlider.value, 10);
+        if (!costSlider || !callsSlider || !closeSlider || !chargeSlider || !retentionSlider) return;
+
+        const costPerCall = parseInt(costSlider.value, 10);
+        const shownCalls = parseInt(callsSlider.value, 10);
         const closeRate = parseInt(closeSlider.value, 10) / 100;
-        const margin = parseInt(marginSlider.value, 10) / 100;
+        const monthlyCharge = parseInt(chargeSlider.value, 10);
+        const retentionMonths = parseInt(retentionSlider.value, 10);
 
-        // Displays
-        acvVal.textContent = currencyFormatter.format(acv);
+        // Value text displays for sliders
+        costVal.textContent = currencyFormatter.format(costPerCall);
+        callsVal.textContent = shownCalls + (shownCalls === 1 ? ' call' : ' calls');
         closeVal.textContent = Math.round(closeRate * 100) + '%';
-        marginVal.textContent = Math.round(margin * 100) + '%';
+        chargeVal.textContent = currencyFormatter.format(monthlyCharge) + '/mo';
+        retentionVal.textContent = retentionMonths + (retentionMonths === 1 ? ' month' : ' months');
 
-        acvSlider.setAttribute('aria-valuetext', currencyFormatter.format(acv));
+        costSlider.setAttribute('aria-valuetext', currencyFormatter.format(costPerCall));
+        callsSlider.setAttribute('aria-valuetext', shownCalls + ' calls');
         closeSlider.setAttribute('aria-valuetext', Math.round(closeRate * 100) + '%');
-        marginSlider.setAttribute('aria-valuetext', Math.round(margin * 100) + '%');
+        chargeSlider.setAttribute('aria-valuetext', currencyFormatter.format(monthlyCharge));
+        retentionSlider.setAttribute('aria-valuetext', retentionMonths + ' months');
 
-        // Calculations
-        const calls = 15;
-        const deals = calls * closeRate;
-        const monthlyRev = deals * acv;
-        const grossProfit = monthlyRev * margin;
-        const annualProfit = grossProfit * 12;
-        const annualRev = monthlyRev * 12;
+        // Mathematical calculations
+        const ltv = monthlyCharge * retentionMonths;
+        const newClients = shownCalls * closeRate;
+        const monthlyInvestment = (shownCalls * costPerCall) + TECH_FEE;
+        const cac = newClients > 0 ? (monthlyInvestment / newClients) : 0;
+        const newMrr = newClients * monthlyCharge;
+        const cohortRevenue = newClients * ltv;
+        const multiplier = monthlyInvestment > 0 ? (cohortRevenue / monthlyInvestment) : 0;
+
+        // Multiplier badge text
+        if (outMultiplier) {
+          outMultiplier.textContent = multiplier.toFixed(1) + 'X';
+        }
+
+        // Example comparison ratio (e.g. for every $2,000 spent you make $24,545)
+        const spendUnit = monthlyInvestment >= 4000 ? 2000 : 1000;
+        const returnUnit = Math.round(multiplier * spendUnit);
+        if (calcRatioText) {
+          calcRatioText.innerHTML = `For every <strong>${currencyFormatter.format(spendUnit)}</strong> spent, you generate <strong>${currencyFormatter.format(returnUnit)}</strong> in client contract value (<strong>${multiplier.toFixed(1)}X ROI</strong>).`;
+        }
+
+        if (calcNarrative) {
+          calcNarrative.innerHTML = `At <strong>${currencyFormatter.format(costPerCall)}</strong>/shown call with <strong>${shownCalls}</strong> calls/mo and a <strong>${Math.round(closeRate * 100)}%</strong> close rate, your total monthly investment of <strong>${currencyFormatter.format(monthlyInvestment)}</strong> (including the $650 tech fee) acquires <strong>${newClients.toFixed(1)}</strong> new clients, adding <strong>${currencyFormatter.format(newMrr)}</strong> in monthly recurring revenue and <strong>${currencyFormatter.format(cohortRevenue)}</strong> in lifetime cohort revenue.`;
+        }
 
         const animDuration = prefersReducedMotion ? 0 : 200;
 
-        animateValue('deals', outDeals, deals, animDuration, false, 1);
-        animateValue('revenue', outRevenue, monthlyRev, animDuration, true);
-        animateValue('profit', outProfit, grossProfit, animDuration, true);
-        animateValue('annual', outAnnual, annualProfit, animDuration, true);
-
-        calcNarrative.innerHTML = `At <strong>${currencyFormatter.format(acv)}</strong> average deal fee, a <strong>${Math.round(closeRate * 100)}%</strong> close rate, and <strong>${Math.round(margin * 100)}%</strong> gross margin, 15 qualified calls/mo puts <strong>${currencyFormatter.format(annualRev)}</strong> advisory revenue and <strong>${currencyFormatter.format(annualProfit)}</strong> net profit on the table this year.`;
+        animateValue('cohortHero', outCohortHero, cohortRevenue, animDuration, true);
+        animateValue('ltv', outLtv, ltv, animDuration, true);
+        animateValue('clients', outClients, newClients, animDuration, false, 1);
+        animateValue('investment', outInvestment, monthlyInvestment, animDuration, true);
+        animateValue('cac', outCac, cac, animDuration, true);
+        animateValue('mrr', outMrr, newMrr, animDuration, true);
+        animateValue('cohort', outCohort, cohortRevenue, animDuration, true);
       }
 
-      [acvSlider, closeSlider, marginSlider].forEach(slider => {
-        slider.addEventListener('input', updateCalculator);
+      [costSlider, callsSlider, closeSlider, chargeSlider, retentionSlider].forEach(slider => {
+        if (slider) {
+          slider.addEventListener('input', updateCalculator);
+        }
       });
+      updateCalculator();
 
       // CANVAS HERO FRACTAL BACKGROUND
       const canvas = document.getElementById('hero-canvas');
