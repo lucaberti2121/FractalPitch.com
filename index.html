@@ -1030,6 +1030,69 @@
         cursor: pointer;
       }
 
+      .fee-toggle-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+
+      .fee-toggle-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .fee-toggle-btns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.375rem;
+        background: rgba(0, 136, 204, 0.08);
+        padding: 0.25rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid rgba(0, 136, 204, 0.18);
+      }
+
+      .fee-toggle-btn {
+        padding: 0.55rem 0.65rem;
+        border-radius: calc(var(--radius-sm) - 2px);
+        border: none;
+        background: transparent;
+        font-family: var(--font-sans);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-align: center;
+        line-height: 1.25;
+      }
+
+      .fee-toggle-btn:hover {
+        color: var(--text-head);
+      }
+
+      .fee-toggle-btn.active {
+        background: #ffffff;
+        color: var(--accent);
+        box-shadow: 0 2px 8px rgba(0, 136, 204, 0.15);
+      }
+
+      .fee-tiers-info {
+        font-size: 0.78125rem;
+        color: #0077A3;
+        background: rgba(53, 215, 255, 0.08);
+        border: 1px solid rgba(53, 215, 255, 0.35);
+        border-radius: var(--radius-sm);
+        padding: 0.5rem 0.75rem;
+        line-height: 1.45;
+      }
+
+      .slider-sublabel {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: -0.25rem;
+      }
+
       .locked-assumption {
         display: flex;
         align-items: center;
@@ -2028,22 +2091,47 @@
                   <input type="range" id="close-slider" min="5" max="50" step="1" value="20" aria-label="Close rate percentage" aria-valuetext="20%" />
                 </div>
 
-                <!-- 4. How much you charge per month -->
+                <!-- 4. Average deal size -->
                 <div class="slider-group">
                   <div class="slider-header">
-                    <label for="charge-slider" class="slider-label">How much you charge per month</label>
-                    <span class="slider-value" id="charge-val">$3,000/mo</span>
+                    <label for="deal-slider" class="slider-label">Average deal size</label>
+                    <span class="slider-value" id="deal-val">$3,000,000</span>
                   </div>
-                  <input type="range" id="charge-slider" min="1000" max="15000" step="250" value="3000" aria-label="Monthly client fee" aria-valuetext="$3,000" />
+                  <input type="range" id="deal-slider" min="500000" max="20000000" step="250000" value="3000000" aria-label="Average deal size" aria-valuetext="$3,000,000" />
                 </div>
 
-                <!-- 5. Average retention (in months) -->
+                <!-- 5. Fee structure toggle -->
+                <div class="fee-toggle-group">
+                  <div class="fee-toggle-header">
+                    <span class="slider-label">Fee structure</span>
+                    <span class="slider-value" id="fee-structure-display">Double Lehman</span>
+                  </div>
+                  <div class="fee-toggle-btns" role="tablist" aria-label="Fee structure mode">
+                    <button type="button" class="fee-toggle-btn active" id="btn-fee-lehman" role="tab" aria-selected="true">Lehman / Double Lehman formula</button>
+                    <button type="button" class="fee-toggle-btn" id="btn-fee-straight" role="tab" aria-selected="false">Straight commission %</button>
+                  </div>
+                  <div id="lehman-info" class="fee-tiers-info">
+                    <strong>Double Lehman scale:</strong> 10% on first $1M • 8% on $1M–$2M • 6% on $2M–$3M • 4% on $3M–$4M • 2% above $4M
+                  </div>
+                </div>
+
+                <!-- 6. Straight commission % (conditionally visible) -->
+                <div class="slider-group" id="commission-slider-group" style="display: none;">
+                  <div class="slider-header">
+                    <label for="commission-slider" class="slider-label">Commission percentage</label>
+                    <span class="slider-value" id="commission-val">10%</span>
+                  </div>
+                  <input type="range" id="commission-slider" min="3" max="15" step="0.5" value="10" aria-label="Straight commission percentage" aria-valuetext="10%" />
+                </div>
+
+                <!-- 7. Average months from engagement to deal close -->
                 <div class="slider-group">
                   <div class="slider-header">
-                    <label for="retention-slider" class="slider-label">Average retention (in months)</label>
-                    <span class="slider-value" id="retention-val">6 months</span>
+                    <label for="months-slider" class="slider-label">Average months to deal close</label>
+                    <span class="slider-value" id="months-val">8 months</span>
                   </div>
-                  <input type="range" id="retention-slider" min="2" max="24" step="1" value="6" aria-label="Average retention in months" aria-valuetext="6 months" />
+                  <input type="range" id="months-slider" min="3" max="24" step="1" value="8" aria-label="Average months from signed engagement to deal close" aria-valuetext="8 months" />
+                  <span class="slider-sublabel">Typical advisory cycle before success fee realization</span>
                 </div>
 
                 <!-- Fixed Monthly Tech Fee Callout -->
@@ -2058,12 +2146,12 @@
 
               <!-- Outputs Column -->
               <div class="calc-outputs">
-                <!-- Top Hero: Cohort Revenue + Multiplier Badge -->
+                <!-- Top Hero: Total Cohort Revenue + Multiplier Badge -->
                 <div class="calc-outputs-hero">
                   <div class="output-item hero-output" style="border: none; padding: 0;">
-                    <span class="output-label">Revenue per month cohort</span>
-                    <span class="output-num" id="out-cohort-hero">$54,000</span>
-                    <span class="output-sub">Total contract value from 1 month's closed cohort</span>
+                    <span class="output-label">Total cohort revenue</span>
+                    <span class="output-num" id="out-cohort-hero">$720,000</span>
+                    <span class="output-sub">Total success fee revenue this cohort of signed engagements generates when deals close</span>
                   </div>
                   <div class="roi-badge-wrap">
                     <div class="roi-badge" id="roi-badge">
@@ -2071,7 +2159,7 @@
                         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                         <polyline points="17 6 23 6 23 12"></polyline>
                       </svg>
-                      <span id="out-multiplier">12.3X</span>
+                      <span id="out-multiplier">163.6X</span>
                       <span>ROI</span>
                     </div>
                   </div>
@@ -2080,14 +2168,14 @@
                 <!-- Requested Metrics Grid -->
                 <div class="calc-metrics-grid">
                   <div class="output-item">
-                    <span class="output-label">Client lifetime value (LTV)</span>
-                    <span class="output-num" id="out-ltv">$18,000</span>
-                    <span class="output-sub">Monthly charge × retention</span>
+                    <span class="output-label">Success fee per deal</span>
+                    <span class="output-num" id="out-success-fee">$240,000</span>
+                    <span class="output-sub" id="out-fee-sub">Realized upon deal close</span>
                   </div>
 
                   <div class="output-item">
-                    <span class="output-label">New clients per month</span>
-                    <span class="output-num" id="out-clients">3.0</span>
+                    <span class="output-label">Deals signed per month</span>
+                    <span class="output-num" id="out-deals">3.0</span>
                     <span class="output-sub">Shown calls × close rate</span>
                   </div>
 
@@ -2098,21 +2186,9 @@
                   </div>
 
                   <div class="output-item">
-                    <span class="output-label">Cost per client won (CAC)</span>
+                    <span class="output-label">Cost per deal signed</span>
                     <span class="output-num" id="out-cac">$1,467</span>
-                    <span class="output-sub">Monthly spend ÷ clients won</span>
-                  </div>
-
-                  <div class="output-item">
-                    <span class="output-label">New MRR added monthly</span>
-                    <span class="output-num" id="out-mrr">$9,000</span>
-                    <span class="output-sub">New recurring revenue/mo</span>
-                  </div>
-
-                  <div class="output-item">
-                    <span class="output-label">Revenue month cohort</span>
-                    <span class="output-num" id="out-cohort">$54,000</span>
-                    <span class="output-sub">New clients × Client LTV</span>
+                    <span class="output-sub">Monthly spend ÷ deals signed</span>
                   </div>
                 </div>
 
@@ -2125,17 +2201,18 @@
                     </svg>
                   </div>
                   <div class="calc-ratio-text" id="calc-ratio-text">
-                    For every <strong>$2,000</strong> spent, you generate <strong>$24,545</strong> in client contract value (<strong>12.3X ROI</strong>).
+                    For every <strong>$2,000</strong> spent, you generate <strong>$327,273</strong> in deal revenue (<strong>163.6X ROI</strong>).
                   </div>
                 </div>
 
                 <!-- Dynamic Detailed Narrative -->
                 <p class="calc-sentence" id="calc-narrative">
-                  At <strong>$250</strong>/shown call with <strong>15</strong> calls/mo and a <strong>20%</strong> close rate, your total monthly investment of <strong>$4,400</strong> (including the $650 tech fee) acquires <strong>3.0</strong> new clients, adding <strong>$9,000</strong> in monthly recurring revenue and <strong>$54,000</strong> in total lifetime cohort revenue.
+                  At <strong>$250</strong>/shown call with <strong>15</strong> calls/mo and a <strong>20%</strong> close rate, your monthly investment of <strong>$4,400</strong> (including the $650 tech fee) signs <strong>3.0</strong> advisory engagements. At a <strong>$3,000,000</strong> average deal size, this yields <strong>$240,000</strong> in success fee per closed deal and <strong>$720,000</strong> in total cohort deal revenue.
                 </p>
 
-                <p class="calc-disclaimer">
-                  * Figures are illustrative cohort projections based on your selected show-up volume, close rate, retention, and pricing model. Includes the fixed $650/month tech fee. Actual conversions vary based on target criteria, offer strength, and sales execution.
+                <!-- Disclaimer Line -->
+                <p class="calc-disclaimer" id="calc-disclaimer">
+                  * Success fees are realized at deal close, typically <span id="disclaimer-months">8</span> months after a signed engagement — these are deal-cycle economics, not monthly recurring revenue.
                 </p>
               </div>
             </div>
@@ -2638,31 +2715,40 @@
         });
       }
 
-      // ROI & PIPELINE COHORT CALCULATOR ENGINE
+      // ROI & PIPELINE COHORT CALCULATOR ENGINE (M&A SUCCESS FEE MODEL)
       const costSlider = document.getElementById('cost-slider');
       const callsSlider = document.getElementById('calls-slider');
       const closeSlider = document.getElementById('close-slider');
-      const chargeSlider = document.getElementById('charge-slider');
-      const retentionSlider = document.getElementById('retention-slider');
+      const dealSlider = document.getElementById('deal-slider');
+      const commissionSlider = document.getElementById('commission-slider');
+      const monthsSlider = document.getElementById('months-slider');
+
+      const btnFeeLehman = document.getElementById('btn-fee-lehman');
+      const btnFeeStraight = document.getElementById('btn-fee-straight');
+      const feeStructureDisplay = document.getElementById('fee-structure-display');
+      const lehmanInfo = document.getElementById('lehman-info');
+      const commissionSliderGroup = document.getElementById('commission-slider-group');
 
       const costVal = document.getElementById('cost-val');
       const callsVal = document.getElementById('calls-val');
       const closeVal = document.getElementById('close-val');
-      const chargeVal = document.getElementById('charge-val');
-      const retentionVal = document.getElementById('retention-val');
+      const dealVal = document.getElementById('deal-val');
+      const commissionVal = document.getElementById('commission-val');
+      const monthsVal = document.getElementById('months-val');
+      const disclaimerMonths = document.getElementById('disclaimer-months');
 
       const outCohortHero = document.getElementById('out-cohort-hero');
       const outMultiplier = document.getElementById('out-multiplier');
-      const outLtv = document.getElementById('out-ltv');
-      const outClients = document.getElementById('out-clients');
+      const outSuccessFee = document.getElementById('out-success-fee');
+      const outFeeSub = document.getElementById('out-fee-sub');
+      const outDeals = document.getElementById('out-deals');
       const outInvestment = document.getElementById('out-investment');
       const outCac = document.getElementById('out-cac');
-      const outMrr = document.getElementById('out-mrr');
-      const outCohort = document.getElementById('out-cohort');
       const calcRatioText = document.getElementById('calc-ratio-text');
       const calcNarrative = document.getElementById('calc-narrative');
 
       const TECH_FEE = 650;
+      let currentFeeMode = 'lehman'; // 'lehman' or 'straight'
 
       const currencyFormatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -2671,13 +2757,11 @@
       });
 
       let currentVals = {
-        cohortHero: 54000,
-        ltv: 18000,
-        clients: 3.0,
+        cohortHero: 720000,
+        successFee: 240000,
+        deals: 3.0,
         investment: 4400,
-        cac: 1467,
-        mrr: 9000,
-        cohort: 54000
+        cac: 1467
       };
 
       let activeAnimFrames = {};
@@ -2723,65 +2807,143 @@
         activeAnimFrames[key] = requestAnimationFrame(update);
       }
 
+      function calculateDoubleLehman(dealSize) {
+        let fee = 0;
+        // Tier 1: 10% on the first $1M
+        if (dealSize > 0) {
+          const t1 = Math.min(dealSize, 1000000);
+          fee += t1 * 0.10;
+        }
+        // Tier 2: 8% on the next $1M ($1M–$2M)
+        if (dealSize > 1000000) {
+          const t2 = Math.min(dealSize - 1000000, 1000000);
+          fee += t2 * 0.08;
+        }
+        // Tier 3: 6% on the next $1M ($2M–$3M)
+        if (dealSize > 2000000) {
+          const t3 = Math.min(dealSize - 2000000, 1000000);
+          fee += t3 * 0.06;
+        }
+        // Tier 4: 4% on the next $1M ($3M–$4M)
+        if (dealSize > 3000000) {
+          const t4 = Math.min(dealSize - 3000000, 1000000);
+          fee += t4 * 0.04;
+        }
+        // Tier 5: 2% on everything above $4M
+        if (dealSize > 4000000) {
+          const t5 = dealSize - 4000000;
+          fee += t5 * 0.02;
+        }
+        return fee;
+      }
+
       function updateCalculator() {
-        if (!costSlider || !callsSlider || !closeSlider || !chargeSlider || !retentionSlider) return;
+        if (!costSlider || !callsSlider || !closeSlider || !dealSlider) return;
 
         const costPerCall = parseInt(costSlider.value, 10);
         const shownCalls = parseInt(callsSlider.value, 10);
         const closeRate = parseInt(closeSlider.value, 10) / 100;
-        const monthlyCharge = parseInt(chargeSlider.value, 10);
-        const retentionMonths = parseInt(retentionSlider.value, 10);
+        const dealSize = parseInt(dealSlider.value, 10);
+        const commissionPct = commissionSlider ? parseFloat(commissionSlider.value) : 10;
+        const monthsToClose = monthsSlider ? parseInt(monthsSlider.value, 10) : 8;
 
         // Value text displays for sliders
-        costVal.textContent = currencyFormatter.format(costPerCall);
-        callsVal.textContent = shownCalls + (shownCalls === 1 ? ' call' : ' calls');
-        closeVal.textContent = Math.round(closeRate * 100) + '%';
-        chargeVal.textContent = currencyFormatter.format(monthlyCharge) + '/mo';
-        retentionVal.textContent = retentionMonths + (retentionMonths === 1 ? ' month' : ' months');
+        if (costVal) costVal.textContent = currencyFormatter.format(costPerCall);
+        if (callsVal) callsVal.textContent = shownCalls + (shownCalls === 1 ? ' call' : ' calls');
+        if (closeVal) closeVal.textContent = Math.round(closeRate * 100) + '%';
+        if (dealVal) dealVal.textContent = currencyFormatter.format(dealSize);
+        if (commissionVal) commissionVal.textContent = commissionPct + '%';
+        if (monthsVal) monthsVal.textContent = monthsToClose + (monthsToClose === 1 ? ' month' : ' months');
+        if (disclaimerMonths) disclaimerMonths.textContent = monthsToClose;
 
         costSlider.setAttribute('aria-valuetext', currencyFormatter.format(costPerCall));
         callsSlider.setAttribute('aria-valuetext', shownCalls + ' calls');
         closeSlider.setAttribute('aria-valuetext', Math.round(closeRate * 100) + '%');
-        chargeSlider.setAttribute('aria-valuetext', currencyFormatter.format(monthlyCharge));
-        retentionSlider.setAttribute('aria-valuetext', retentionMonths + ' months');
+        dealSlider.setAttribute('aria-valuetext', currencyFormatter.format(dealSize));
+        if (commissionSlider) commissionSlider.setAttribute('aria-valuetext', commissionPct + '%');
+        if (monthsSlider) monthsSlider.setAttribute('aria-valuetext', monthsToClose + ' months');
 
-        // Mathematical calculations
-        const ltv = monthlyCharge * retentionMonths;
-        const newClients = shownCalls * closeRate;
+        // Success fee calculation based on selected fee structure
+        let successFeePerDeal = 0;
+        if (currentFeeMode === 'lehman') {
+          successFeePerDeal = calculateDoubleLehman(dealSize);
+          if (feeStructureDisplay) feeStructureDisplay.textContent = 'Double Lehman';
+          if (outFeeSub) {
+            const effRate = dealSize > 0 ? ((successFeePerDeal / dealSize) * 100).toFixed(1) : '0.0';
+            outFeeSub.textContent = `Double Lehman scale (${effRate}% effective)`;
+          }
+        } else {
+          successFeePerDeal = dealSize * (commissionPct / 100);
+          if (feeStructureDisplay) feeStructureDisplay.textContent = `${commissionPct}% Straight`;
+          if (outFeeSub) {
+            outFeeSub.textContent = `${commissionPct}% straight commission`;
+          }
+        }
+
+        // New pipeline calculations
+        const dealsSigned = shownCalls * closeRate;
+        const totalCohortRevenue = dealsSigned * successFeePerDeal;
         const monthlyInvestment = (shownCalls * costPerCall) + TECH_FEE;
-        const cac = newClients > 0 ? (monthlyInvestment / newClients) : 0;
-        const newMrr = newClients * monthlyCharge;
-        const cohortRevenue = newClients * ltv;
-        const multiplier = monthlyInvestment > 0 ? (cohortRevenue / monthlyInvestment) : 0;
+        const cac = dealsSigned > 0 ? (monthlyInvestment / dealsSigned) : 0;
+        const multiplier = monthlyInvestment > 0 ? (totalCohortRevenue / monthlyInvestment) : 0;
 
         // Multiplier badge text
         if (outMultiplier) {
           outMultiplier.textContent = multiplier.toFixed(1) + 'X';
         }
 
-        // Example comparison ratio (e.g. for every $2,000 spent you make $24,545)
+        // Comparison ratio sentence (e.g., For every $2,000 spent, you generate $Y in deal revenue)
         const spendUnit = monthlyInvestment >= 4000 ? 2000 : 1000;
         const returnUnit = Math.round(multiplier * spendUnit);
         if (calcRatioText) {
-          calcRatioText.innerHTML = `For every <strong>${currencyFormatter.format(spendUnit)}</strong> spent, you generate <strong>${currencyFormatter.format(returnUnit)}</strong> in client contract value (<strong>${multiplier.toFixed(1)}X ROI</strong>).`;
+          calcRatioText.innerHTML = `For every <strong>${currencyFormatter.format(spendUnit)}</strong> spent, you generate <strong>${currencyFormatter.format(returnUnit)}</strong> in deal revenue (<strong>${multiplier.toFixed(1)}X ROI</strong>).`;
         }
 
         if (calcNarrative) {
-          calcNarrative.innerHTML = `At <strong>${currencyFormatter.format(costPerCall)}</strong>/shown call with <strong>${shownCalls}</strong> calls/mo and a <strong>${Math.round(closeRate * 100)}%</strong> close rate, your total monthly investment of <strong>${currencyFormatter.format(monthlyInvestment)}</strong> (including the $650 tech fee) acquires <strong>${newClients.toFixed(1)}</strong> new clients, adding <strong>${currencyFormatter.format(newMrr)}</strong> in monthly recurring revenue and <strong>${currencyFormatter.format(cohortRevenue)}</strong> in lifetime cohort revenue.`;
+          calcNarrative.innerHTML = `At <strong>${currencyFormatter.format(costPerCall)}</strong>/shown call with <strong>${shownCalls}</strong> calls/mo and a <strong>${Math.round(closeRate * 100)}%</strong> close rate, your monthly investment of <strong>${currencyFormatter.format(monthlyInvestment)}</strong> (including the $650 tech fee) signs <strong>${dealsSigned.toFixed(1)}</strong> advisory engagements. At a <strong>${currencyFormatter.format(dealSize)}</strong> average deal size, this yields <strong>${currencyFormatter.format(successFeePerDeal)}</strong> in success fee per closed deal and <strong>${currencyFormatter.format(totalCohortRevenue)}</strong> in total cohort deal revenue.`;
         }
 
         const animDuration = prefersReducedMotion ? 0 : 200;
 
-        animateValue('cohortHero', outCohortHero, cohortRevenue, animDuration, true);
-        animateValue('ltv', outLtv, ltv, animDuration, true);
-        animateValue('clients', outClients, newClients, animDuration, false, 1);
+        animateValue('cohortHero', outCohortHero, totalCohortRevenue, animDuration, true);
+        animateValue('successFee', outSuccessFee, successFeePerDeal, animDuration, true);
+        animateValue('deals', outDeals, dealsSigned, animDuration, false, 1);
         animateValue('investment', outInvestment, monthlyInvestment, animDuration, true);
         animateValue('cac', outCac, cac, animDuration, true);
-        animateValue('mrr', outMrr, newMrr, animDuration, true);
-        animateValue('cohort', outCohort, cohortRevenue, animDuration, true);
       }
 
-      [costSlider, callsSlider, closeSlider, chargeSlider, retentionSlider].forEach(slider => {
+      // Toggle fee structure handlers
+      if (btnFeeLehman) {
+        btnFeeLehman.addEventListener('click', () => {
+          currentFeeMode = 'lehman';
+          btnFeeLehman.classList.add('active');
+          btnFeeLehman.setAttribute('aria-selected', 'true');
+          if (btnFeeStraight) {
+            btnFeeStraight.classList.remove('active');
+            btnFeeStraight.setAttribute('aria-selected', 'false');
+          }
+          if (lehmanInfo) lehmanInfo.style.display = 'block';
+          if (commissionSliderGroup) commissionSliderGroup.style.display = 'none';
+          updateCalculator();
+        });
+      }
+
+      if (btnFeeStraight) {
+        btnFeeStraight.addEventListener('click', () => {
+          currentFeeMode = 'straight';
+          btnFeeStraight.classList.add('active');
+          btnFeeStraight.setAttribute('aria-selected', 'true');
+          if (btnFeeLehman) {
+            btnFeeLehman.classList.remove('active');
+            btnFeeLehman.setAttribute('aria-selected', 'false');
+          }
+          if (lehmanInfo) lehmanInfo.style.display = 'none';
+          if (commissionSliderGroup) commissionSliderGroup.style.display = 'flex';
+          updateCalculator();
+        });
+      }
+
+      [costSlider, callsSlider, closeSlider, dealSlider, commissionSlider, monthsSlider].forEach(slider => {
         if (slider) {
           slider.addEventListener('input', updateCalculator);
         }
