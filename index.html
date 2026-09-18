@@ -2124,7 +2124,17 @@
                   <input type="range" id="commission-slider" min="3" max="15" step="0.5" value="10" aria-label="Straight commission percentage" aria-valuetext="10%" />
                 </div>
 
-                <!-- 7. Average months from engagement to deal close -->
+                <!-- 7. Signed engagement → close rate -->
+                <div class="slider-group">
+                  <div class="slider-header">
+                    <label for="engagement-close-slider" class="slider-label">Signed engagement → close rate</label>
+                    <span class="slider-value" id="engagement-close-val">50%</span>
+                  </div>
+                  <input type="range" id="engagement-close-slider" min="10" max="100" step="1" value="50" aria-label="Signed engagement to close rate" aria-valuetext="50%" />
+                  <span class="slider-sublabel">Not every signed engagement reaches close. Industry data: ~20-25% for main-street listings without a dedicated advisor, 30-70% for lower-middle-market advisor-run processes, 60-70%+ for well-prepared deals above ~$3M. Adjust to your own historical close rate.</span>
+                </div>
+
+                <!-- 8. Average months from engagement to deal close -->
                 <div class="slider-group">
                   <div class="slider-header">
                     <label for="months-slider" class="slider-label">Average months to deal close</label>
@@ -2150,7 +2160,7 @@
                 <div class="calc-outputs-hero">
                   <div class="output-item hero-output" style="border: none; padding: 0;">
                     <span class="output-label">Total cohort revenue</span>
-                    <span class="output-num" id="out-cohort-hero">$720,000</span>
+                    <span class="output-num" id="out-cohort-hero">$360,000</span>
                     <span class="output-sub">Total success fee revenue this cohort of signed engagements generates when deals close</span>
                   </div>
                   <div class="roi-badge-wrap">
@@ -2159,7 +2169,7 @@
                         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                         <polyline points="17 6 23 6 23 12"></polyline>
                       </svg>
-                      <span id="out-multiplier">163.6X</span>
+                      <span id="out-multiplier">81.8X</span>
                       <span>ROI</span>
                     </div>
                   </div>
@@ -2201,13 +2211,13 @@
                     </svg>
                   </div>
                   <div class="calc-ratio-text" id="calc-ratio-text">
-                    For every <strong>$2,000</strong> spent, you generate <strong>$327,273</strong> in deal revenue (<strong>163.6X ROI</strong>).
+                    For every <strong>$2,000</strong> spent, you generate <strong>$163,636</strong> in deal revenue (<strong>81.8X ROI</strong>).
                   </div>
                 </div>
 
                 <!-- Dynamic Detailed Narrative -->
                 <p class="calc-sentence" id="calc-narrative">
-                  At <strong>$250</strong>/shown call with <strong>15</strong> calls/mo and a <strong>20%</strong> close rate, your monthly investment of <strong>$4,400</strong> (including the $650 tech fee) signs <strong>3.0</strong> advisory engagements. At a <strong>$3,000,000</strong> average deal size, this yields <strong>$240,000</strong> in success fee per closed deal and <strong>$720,000</strong> in total cohort deal revenue.
+                  At <strong>$250</strong>/shown call with <strong>15</strong> calls/mo and a <strong>20%</strong> close rate, your monthly investment of <strong>$4,400</strong> (including the $650 tech fee) signs <strong>3.0</strong> advisory engagements. At a <strong>$3,000,000</strong> average deal size and a <strong>50%</strong> engagement-to-close rate, this yields <strong>$240,000</strong> in success fee per closed deal and <strong>$360,000</strong> in expected total cohort revenue.
                 </p>
 
                 <!-- Disclaimer Line -->
@@ -2533,6 +2543,14 @@
 
     <!-- VANILLA JAVASCRIPT LOGIC -->
     <script>
+      // PREVENT DEFAULT JUMP ON DIRECT HASH LOAD SO CUSTOM OFFSET & SMOOTH SCROLL EXECUTES
+      if (window.location.hash) {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+      }
+
       // NAVBAR SCROLL SENSING
       const navbar = document.getElementById('navbar');
       window.addEventListener('scroll', () => {
@@ -2670,34 +2688,119 @@
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
       }
 
-      // SMOOTH SCROLL WITH HEADER OFFSET FOR ALL ANCHORS
+      // SMOOTH SCROLL WITH HEADER OFFSET AND URL HASH UPDATE FOR ALL ANCHORS
+      function getHeaderOffset() {
+        return navbar ? navbar.offsetHeight + 12 : 80;
+      }
+
+      function scrollToTarget(targetId, updateHistory = false, smooth = true) {
+        if (!targetId || targetId === '#') return;
+        const cleanId = targetId.startsWith('#') ? targetId.slice(1) : targetId;
+        const targetEl = document.getElementById(cleanId);
+        if (!targetEl) return;
+
+        const headerOffset = getHeaderOffset();
+        const elementPosition = targetEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: (smooth && !prefersReduced) ? 'smooth' : 'auto'
+        });
+
+        if (updateHistory) {
+          history.pushState(null, '', '#' + cleanId);
+        }
+
+        // Set active link highlight immediately
+        const hashStr = '#' + cleanId;
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === hashStr) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+        mobileLinks.forEach(link => {
+          if (link.getAttribute('href') === hashStr) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      // CLICK HANDLER FOR ALL HASH ANCHORS
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           const targetId = this.getAttribute('href');
-          if (!targetId || targetId === '#') return;
-          const targetEl = document.querySelector(targetId);
+          if (!targetId) return;
+
+          if (targetId === '#') {
+            e.preventDefault();
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+            history.pushState(null, '', window.location.pathname + window.location.search);
+            return;
+          }
+
+          const cleanId = targetId.startsWith('#') ? targetId.slice(1) : targetId;
+          const targetEl = document.getElementById(cleanId);
           if (targetEl) {
             e.preventDefault();
-            const headerOffset = navbar ? navbar.offsetHeight + 12 : 80;
-            const elementPosition = targetEl.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-
-            // Set active link highlight immediately
-            navLinks.forEach(link => {
-              if (link.getAttribute('href') === targetId) {
-                link.classList.add('active');
-              } else {
-                link.classList.remove('active');
-              }
-            });
+            scrollToTarget(targetId, true, true);
           }
         });
       });
+
+      // LISTEN TO BROWSER BACK / FORWARD POPSTATE
+      window.addEventListener('popstate', () => {
+        if (window.location.hash) {
+          scrollToTarget(window.location.hash, false, true);
+        } else {
+          const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+          updateActiveNav();
+        }
+      });
+
+      // DIRECT PAGE LOAD WITH HASH (e.g. fractalpitch.com/#calculator)
+      let hashScrolledOnLoad = false;
+      function handleDirectHashLoad() {
+        if (hashScrolledOnLoad || !window.location.hash) return;
+        const cleanId = window.location.hash.slice(1);
+        const targetEl = document.getElementById(cleanId);
+        if (targetEl) {
+          hashScrolledOnLoad = true;
+          // Trigger after layout settles
+          setTimeout(() => {
+            scrollToTarget(window.location.hash, false, true);
+          }, 80);
+        }
+      }
+
+      if (document.readyState === 'complete') {
+        handleDirectHashLoad();
+      } else {
+        setTimeout(handleDirectHashLoad, 100);
+        window.addEventListener('load', () => {
+          if (!hashScrolledOnLoad) {
+            handleDirectHashLoad();
+          } else if (window.location.hash) {
+            // Re-check in case lazy assets / webfonts shifted layout height
+            const targetEl = document.getElementById(window.location.hash.slice(1));
+            if (targetEl) {
+              const headerOffset = getHeaderOffset();
+              const currentOffset = targetEl.getBoundingClientRect().top - headerOffset;
+              if (Math.abs(currentOffset) > 12) {
+                scrollToTarget(window.location.hash, false, true);
+              }
+            }
+          }
+        });
+      }
 
       // PROCESS STEP LINE SVG ANIMATION
       const processLine = document.getElementById('process-line');
@@ -2734,6 +2837,8 @@
       const closeVal = document.getElementById('close-val');
       const dealVal = document.getElementById('deal-val');
       const commissionVal = document.getElementById('commission-val');
+      const engagementCloseSlider = document.getElementById('engagement-close-slider');
+      const engagementCloseVal = document.getElementById('engagement-close-val');
       const monthsVal = document.getElementById('months-val');
       const disclaimerMonths = document.getElementById('disclaimer-months');
 
@@ -2757,7 +2862,7 @@
       });
 
       let currentVals = {
-        cohortHero: 720000,
+        cohortHero: 360000,
         successFee: 240000,
         deals: 3.0,
         investment: 4400,
@@ -2845,6 +2950,7 @@
         const closeRate = parseInt(closeSlider.value, 10) / 100;
         const dealSize = parseInt(dealSlider.value, 10);
         const commissionPct = commissionSlider ? parseFloat(commissionSlider.value) : 10;
+        const engagementCloseRate = engagementCloseSlider ? (parseInt(engagementCloseSlider.value, 10) / 100) : 0.50;
         const monthsToClose = monthsSlider ? parseInt(monthsSlider.value, 10) : 8;
 
         // Value text displays for sliders
@@ -2853,6 +2959,7 @@
         if (closeVal) closeVal.textContent = Math.round(closeRate * 100) + '%';
         if (dealVal) dealVal.textContent = currencyFormatter.format(dealSize);
         if (commissionVal) commissionVal.textContent = commissionPct + '%';
+        if (engagementCloseVal) engagementCloseVal.textContent = Math.round(engagementCloseRate * 100) + '%';
         if (monthsVal) monthsVal.textContent = monthsToClose + (monthsToClose === 1 ? ' month' : ' months');
         if (disclaimerMonths) disclaimerMonths.textContent = monthsToClose;
 
@@ -2861,6 +2968,7 @@
         closeSlider.setAttribute('aria-valuetext', Math.round(closeRate * 100) + '%');
         dealSlider.setAttribute('aria-valuetext', currencyFormatter.format(dealSize));
         if (commissionSlider) commissionSlider.setAttribute('aria-valuetext', commissionPct + '%');
+        if (engagementCloseSlider) engagementCloseSlider.setAttribute('aria-valuetext', Math.round(engagementCloseRate * 100) + '%');
         if (monthsSlider) monthsSlider.setAttribute('aria-valuetext', monthsToClose + ' months');
 
         // Success fee calculation based on selected fee structure
@@ -2880,9 +2988,9 @@
           }
         }
 
-        // New pipeline calculations
+        // Pipeline calculations with signed-engagement attrition
         const dealsSigned = shownCalls * closeRate;
-        const totalCohortRevenue = dealsSigned * successFeePerDeal;
+        const totalCohortRevenue = dealsSigned * successFeePerDeal * engagementCloseRate;
         const monthlyInvestment = (shownCalls * costPerCall) + TECH_FEE;
         const cac = dealsSigned > 0 ? (monthlyInvestment / dealsSigned) : 0;
         const multiplier = monthlyInvestment > 0 ? (totalCohortRevenue / monthlyInvestment) : 0;
@@ -2900,7 +3008,7 @@
         }
 
         if (calcNarrative) {
-          calcNarrative.innerHTML = `At <strong>${currencyFormatter.format(costPerCall)}</strong>/shown call with <strong>${shownCalls}</strong> calls/mo and a <strong>${Math.round(closeRate * 100)}%</strong> close rate, your monthly investment of <strong>${currencyFormatter.format(monthlyInvestment)}</strong> (including the $650 tech fee) signs <strong>${dealsSigned.toFixed(1)}</strong> advisory engagements. At a <strong>${currencyFormatter.format(dealSize)}</strong> average deal size, this yields <strong>${currencyFormatter.format(successFeePerDeal)}</strong> in success fee per closed deal and <strong>${currencyFormatter.format(totalCohortRevenue)}</strong> in total cohort deal revenue.`;
+          calcNarrative.innerHTML = `At <strong>${currencyFormatter.format(costPerCall)}</strong>/shown call with <strong>${shownCalls}</strong> calls/mo and a <strong>${Math.round(closeRate * 100)}%</strong> close rate, your monthly investment of <strong>${currencyFormatter.format(monthlyInvestment)}</strong> (including the $650 tech fee) signs <strong>${dealsSigned.toFixed(1)}</strong> advisory engagements. At a <strong>${currencyFormatter.format(dealSize)}</strong> average deal size and a <strong>${Math.round(engagementCloseRate * 100)}%</strong> engagement-to-close rate, this yields <strong>${currencyFormatter.format(successFeePerDeal)}</strong> in success fee per closed deal and <strong>${currencyFormatter.format(totalCohortRevenue)}</strong> in expected total cohort revenue.`;
         }
 
         const animDuration = prefersReducedMotion ? 0 : 200;
@@ -2943,7 +3051,7 @@
         });
       }
 
-      [costSlider, callsSlider, closeSlider, dealSlider, commissionSlider, monthsSlider].forEach(slider => {
+      [costSlider, callsSlider, closeSlider, dealSlider, commissionSlider, engagementCloseSlider, monthsSlider].forEach(slider => {
         if (slider) {
           slider.addEventListener('input', updateCalculator);
         }
