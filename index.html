@@ -2067,10 +2067,14 @@
                 <!-- 1. Cost per shown call -->
                 <div class="slider-group">
                   <div class="slider-header">
-                    <label for="cost-slider" class="slider-label">Cost per shown call</label>
-                    <span class="slider-value" id="cost-val">$250</span>
+                    <label for="cost-slider" class="slider-label" style="display: flex; align-items: center; gap: 0.5rem;">
+                      Cost per shown call
+                      <span class="dominant-badge" style="font-size: 0.68rem; padding: 0.15rem 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Fixed</span>
+                    </label>
+                    <span class="slider-value" id="cost-val">$150</span>
                   </div>
-                  <input type="range" id="cost-slider" min="150" max="500" step="25" value="250" aria-label="Cost per shown call" aria-valuetext="$250" />
+                  <input type="range" id="cost-slider" min="150" max="150" value="150" disabled aria-label="Cost per shown call (Fixed at $150)" aria-valuetext="$150" style="opacity: 0.65; cursor: default;" />
+                  <span class="slider-sublabel" style="margin-top: 0.35rem; display: block;">Fixed performance price per qualified show-up call</span>
                 </div>
 
                 <!-- 2. Shown calls per month -->
@@ -2169,7 +2173,7 @@
                         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                         <polyline points="17 6 23 6 23 12"></polyline>
                       </svg>
-                      <span id="out-multiplier">81.8X</span>
+                      <span id="out-multiplier">124.1X</span>
                       <span>ROI</span>
                     </div>
                   </div>
@@ -2191,13 +2195,13 @@
 
                   <div class="output-item">
                     <span class="output-label">Monthly investment</span>
-                    <span class="output-num" id="out-investment">$4,400</span>
+                    <span class="output-num" id="out-investment">$2,900</span>
                     <span class="output-sub">Calls cost + $650 tech fee</span>
                   </div>
 
                   <div class="output-item">
                     <span class="output-label">Cost per deal signed</span>
-                    <span class="output-num" id="out-cac">$1,467</span>
+                    <span class="output-num" id="out-cac">$967</span>
                     <span class="output-sub">Monthly spend ÷ deals signed</span>
                   </div>
                 </div>
@@ -2211,13 +2215,13 @@
                     </svg>
                   </div>
                   <div class="calc-ratio-text" id="calc-ratio-text">
-                    For every <strong>$2,000</strong> spent, you generate <strong>$163,636</strong> in deal revenue (<strong>81.8X ROI</strong>).
+                    For every <strong>$1,000</strong> spent, you generate <strong>$124,138</strong> in deal revenue (<strong>124.1X ROI</strong>).
                   </div>
                 </div>
 
                 <!-- Dynamic Detailed Narrative -->
                 <p class="calc-sentence" id="calc-narrative">
-                  At <strong>$250</strong>/shown call with <strong>15</strong> calls/mo and a <strong>20%</strong> close rate, your monthly investment of <strong>$4,400</strong> (including the $650 tech fee) signs <strong>3.0</strong> advisory engagements. At a <strong>$3,000,000</strong> average deal size and a <strong>50%</strong> engagement-to-close rate, this yields <strong>$240,000</strong> in success fee per closed deal and <strong>$360,000</strong> in expected total cohort revenue.
+                  At <strong>$150</strong>/shown call with <strong>15</strong> calls/mo and a <strong>20%</strong> close rate, your monthly investment of <strong>$2,900</strong> (including the $650 tech fee) signs <strong>3.0</strong> advisory engagements. At a <strong>$3,000,000</strong> average deal size and a <strong>50%</strong> engagement-to-close rate, this yields <strong>$240,000</strong> in success fee per closed deal and <strong>$360,000</strong> in expected total cohort revenue.
                 </p>
 
                 <!-- Disclaimer Line -->
@@ -2278,7 +2282,7 @@
                 <div>
                   <h3 style="margin: 0; font-size: 1.5rem;">FractalPitch</h3>
                   <div style="margin-top: 0.35rem; display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;">
-                    <span style="font-size: 2rem; font-weight: 800; color: #041B29;">$250</span>
+                    <span style="font-size: 2rem; font-weight: 800; color: #041B29;">$150</span>
                     <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted);">/ show-up call</span>
                     <span style="font-size: 0.8rem; font-weight: 600; color: #0077A3;">(+ $650/mo tech fee)</span>
                   </div>
@@ -2392,7 +2396,7 @@
                 <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
               </button>
               <div class="faq-content">
-                <p>You only pay per qualified call that shows up ($250 per show-up call, plus a flat $650/month tech fee). There are zero monthly management retainers, no hidden charges, and no long-term contracts.</p>
+                <p>You only pay per qualified call that shows up ($150 per show-up call, plus a flat $650/month tech fee). There are zero monthly management retainers, no hidden charges, and no long-term contracts.</p>
               </div>
             </div>
 
@@ -2865,8 +2869,8 @@
         cohortHero: 360000,
         successFee: 240000,
         deals: 3.0,
-        investment: 4400,
-        cac: 1467
+        investment: 2900,
+        cac: 967
       };
 
       let activeAnimFrames = {};
